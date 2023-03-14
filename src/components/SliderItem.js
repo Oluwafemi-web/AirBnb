@@ -17,9 +17,11 @@ const SliderItem = forwardRef((props, ref) => {
                               <a className="default-btn" href="/rooms">explore</a>
                          </div>
                     </div>
+
                </Carousel.Caption>
           </Carousel.Item>
      );
 });
+
 
 export default SliderItem;

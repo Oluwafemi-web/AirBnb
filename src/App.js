@@ -15,6 +15,7 @@ import Footer from './components/Footer'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './components/css/default.css'
 import './components/css/style.css'
+import './components/css/slider.css'
 import './components/css/responsive.css'
 import IndexNews from './components/Index/IndexNews';
 

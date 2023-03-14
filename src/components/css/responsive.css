@@ -450,12 +450,19 @@
      }
 
      .banner-content h1 {
-          font-size: 34px;
+          font-size: 28px;
           padding-top: 0;
      }
 
-     .slider-area {
+     /* .slider-area {
           height: 300px;
+     } */
+     .banner-btn a {
+          line-height: 37px;
+     }
+
+     .carousel-caption {
+          top: 0;
      }
 
      form.search-form {

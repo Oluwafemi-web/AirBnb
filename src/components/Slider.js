@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import SliderItem from './SliderItem';
 import sanityClient from '../client';
-import './css/slider.css'
+// import './css/slider.css'
 
 
 
