@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 export default function PricingItems(props) {
      return (
           <div className="col-md-4 col-sm-6">
@@ -17,9 +18,9 @@ export default function PricingItems(props) {
                          <span className="">{props.details5}</span>
                     </div>
                     <div className="signup-btn">
-                         <a href="#" className="default-btn">
+                         <Link to="" className="default-btn">
                               SIGN UP
-                         </a>
+                         </Link>
                     </div>
                </div>
           </div>
