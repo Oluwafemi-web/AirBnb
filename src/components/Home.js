@@ -4,7 +4,7 @@ import IndexAbout from "./Index/IndexAbout";
 import IndexRoom from "./Index/IndexRooms";
 import IndexServices from "./Index/IndexServices";
 import IndexCounter from "./Index/IndexCounter";
-import IndexGallery from "./Index/IndexGallery";
+// import IndexGallery from "./Index/IndexGallery";
 import IndexTeam from "./Index/IndexTeam";
 import IndexAdvert from "./Index/IndexAdvert"
 import IndexPricing from "./Index/IndexPricing";
@@ -20,7 +20,7 @@ export default function Home() {
                <IndexRoom />
                <IndexServices />
                <IndexCounter />
-               <IndexGallery />
+               {/* <IndexGallery /> */}
                <IndexTeam />
                <IndexAdvert />
                <IndexPricing />
