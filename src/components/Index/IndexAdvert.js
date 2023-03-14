@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 export default function IndexAdvert() {
      return (
           <section className="advertise-area bg-2 overlay-dark">
@@ -8,9 +9,9 @@ export default function IndexAdvert() {
                                    <h1>
                                         get <span>15% off</span> on any other events...
                                    </h1>
-                                   <a href="#" className="default-btn">
+                                   <Link to="" className="default-btn">
                                         Book Now
-                                   </a>
+                                   </Link>
                               </div>
                          </div>
                     </div>

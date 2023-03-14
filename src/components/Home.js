@@ -8,8 +8,8 @@ import IndexGallery from "./Index/IndexGallery";
 import IndexTeam from "./Index/IndexTeam";
 import IndexAdvert from "./Index/IndexAdvert"
 import IndexPricing from "./Index/IndexPricing";
-import IndexBlog from "./Index/IndexBlog";
-import IndexClient from "./Index/IndexClient"
+// import IndexBlog from "./Index/IndexBlog";
+// import IndexClient from "./Index/IndexClient"
 // import NavBar from "./NavBar";
 export default function Home() {
      return (
