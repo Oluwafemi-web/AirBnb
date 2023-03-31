@@ -1,7 +1,7 @@
 import './css/footer.css'
 import Socials from './Socials'
-import { useState, useEffect } from 'react'
-import sanityClient from '../client'
+// import { useState, useEffect } from 'react'
+// import sanityClient from '../client'
 import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from 'react-icons/fa'
 // import FooterImage from './FooterImage'
 export default function IndexFooter(props) {
