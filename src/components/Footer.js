@@ -72,7 +72,7 @@ export default function IndexFooter(props) {
                                         </div>
                                    </div>
                               </div>
-                              <div className="col-xl-2 col-lg-3 col-md-6 col-sm-6 col-12 mb-60">
+                              {/* <div className="col-xl-2 col-lg-3 col-md-6 col-sm-6 col-12 mb-60">
                                    <div className="single-footer-widget">
                                         <h3>quick links</h3>
                                         <ul className="footer-list">
@@ -104,7 +104,7 @@ export default function IndexFooter(props) {
                                              {image && image.map((item, index) => <FooterImage key={index} image={item.mainImage.asset.url} />)}
                                         </div>
                                    </div>
-                              </div>
+                              </div> */}
                          </div>
                     </div>
                </div>

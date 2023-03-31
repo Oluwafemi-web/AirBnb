@@ -6,7 +6,7 @@ export default function IndexAbout() {
      return (
           <section className="about-area">
                <div className="container">
-                    <div className="row">
+                    {/* <div className="row">
                          <div className="col-12">
                               <form action="#" method="post" className="search-form">
                                    <div className="form-container fix">
@@ -47,7 +47,7 @@ export default function IndexAbout() {
                                    </div>
                               </form>
                          </div>
-                    </div>
+                    </div> */}
                     <div className="row">
                          <div className="col-lg-7">
                               <div className="video-wrapper mt-90">
