@@ -3,21 +3,21 @@ import Socials from './Socials'
 import { useState, useEffect } from 'react'
 import sanityClient from '../client'
 import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from 'react-icons/fa'
-import FooterImage from './FooterImage'
+// import FooterImage from './FooterImage'
 export default function IndexFooter(props) {
-     const [image, updateImage] = useState(null)
-     useEffect(() => {
-          sanityClient.fetch(`*[_type == "footerimage"] {
-               mainImage{
-                    asset->{
-                         _id,
-                         url
-                    }
-               }
+     // const [image, updateImage] = useState(null)
+     // useEffect(() => {
+     //      sanityClient.fetch(`*[_type == "footerimage"] {
+     //           mainImage{
+     //                asset->{
+     //                     _id,
+     //                     url
+     //                }
+     //           }
 
-          }`).then(data => updateImage(data))
-               .catch(console.error)
-     }, [])
+     //      }`).then(data => updateImage(data))
+     //           .catch(console.error)
+     // }, [])
      return (
           <footer className="footer-area">
                {/* Footer Widget Start */}
