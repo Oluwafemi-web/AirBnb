@@ -17,10 +17,10 @@ export default function IndexRoomItems(props) {
                               </a>
                          </div>
                     </div>
-                    <div className="p-amount">
+                    {/* <div className="p-amount">
                          <span>{props.price}</span>
                          <span className="count">Per Night</span>
-                    </div>
+                    </div> */}
                </div>
           </div>
 

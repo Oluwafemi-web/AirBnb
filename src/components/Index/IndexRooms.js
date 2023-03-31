@@ -8,7 +8,6 @@ export default function IndexRoom() {
      useEffect(() => {
           sanityClient.fetch(`*[_type == "room"] {
                title,
-               price,
                description,
                mainImage{
                     asset->{
@@ -38,7 +37,7 @@ export default function IndexRoom() {
                     </div>
                </div>
                <div className="container-fluid overflow-hidden">
-                    {roomData && roomData.map((room, index) => <IndexRoomItems key={index} title={room.title} url={room.mainImage.asset.url} alt={room.mainImage.alt} price={room.price} description={room.description} />)}
+                    {roomData && roomData.map((room, index) => <IndexRoomItems key={index} title={room.title} url={room.mainImage.asset.url} alt={room.mainImage.alt} description={room.description} />)}
                </div>
           </section>
 
