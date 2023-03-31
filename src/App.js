@@ -17,7 +17,7 @@ import './components/css/default.css'
 import './components/css/style.css'
 import './components/css/slider.css'
 import './components/css/responsive.css'
-import IndexNews from './components/Index/IndexNews';
+// import IndexNews from './components/Index/IndexNews';
 
 function App() {
   const [footer, updateFooter] = useState(null)
@@ -52,7 +52,7 @@ function App() {
         <Route element={<Activities />} path='/activities' />
 
       </Routes>
-      <IndexNews />
+      {/* <IndexNews /> */}
       {footer && footer.map((item, index) => <Footer key={index} logo={item.logo.asset.url} description={item.about} email={item.email} number={item.number} address={item.address} />)}
       {/* <Footer /> */}
     </BrowserRouter>
