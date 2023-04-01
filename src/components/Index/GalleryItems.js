@@ -7,7 +7,6 @@ export default function GalleryItems(props) {
      return (
           <div
                className={`"gallery-item ${props.category}`}
-               style={{ position: "absolute", left: "0%", top: 0 }}
           >
                <div className="thumb">
                     <img src={props.img} alt="" />
