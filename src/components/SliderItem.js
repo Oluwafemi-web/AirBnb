@@ -3,7 +3,7 @@ import Carousel from 'react-bootstrap/Carousel';
 
 const SliderItem = forwardRef((props, ref) => {
      return (
-          <Carousel.Item ref={ref} className={props.isActive ? 'active' : ''}>
+          <Carousel.Item ref={ref} className={`overlay ${props.isActive ? 'active' : ''}`}>
                <img
                     className="d-block w-100"
                     src={props.imgs}
