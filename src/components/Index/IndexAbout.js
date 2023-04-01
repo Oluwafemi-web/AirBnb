@@ -6,48 +6,7 @@ export default function IndexAbout() {
      return (
           <section className="about-area">
                <div className="container">
-                    {/* <div className="row">
-                         <div className="col-12">
-                              <form action="#" method="post" className="search-form">
-                                   <div className="form-container fix">
-                                        <div className="box-select">
-                                             <div className="select date">
-                                                  <input type="date" name="arrive" />
-                                             </div>
-                                             <div className="select date">
-                                                  <input type="date" name="departure" />
-                                             </div>
-                                             <div className="select arrow">
-                                                  <select name="adults">
-                                                       <option>ADULTS</option>
-                                                       <option>1</option>
-                                                       <option>2</option>
-                                                       <option>3</option>
-                                                       <option>4</option>
-                                                       <option>5</option>
-                                                       <option>6</option>
-                                                  </select>
-                                             </div>
-                                             <div className="select arrow">
-                                                  <select name="children">
-                                                       <option>CHILDREN</option>
-                                                       <option>1</option>
-                                                       <option>2</option>
-                                                       <option>3</option>
-                                                       <option>4</option>
-                                                       <option>5</option>
-                                                       <option>6</option>
-                                                  </select>
-                                             </div>
-                                        </div>
-                                        <button type="submit" className="search default-btn">
-                                             {" "}
-                                             Check Availability
-                                        </button>
-                                   </div>
-                              </form>
-                         </div>
-                    </div> */}
+
                     <div className="row">
                          <div className="col-lg-7">
                               <div className="video-wrapper mt-90">

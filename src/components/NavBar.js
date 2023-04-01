@@ -108,17 +108,6 @@ export default function NavBar() {
                                         </li>
                                         <li>
                                              <Link to="/rooms">ROOMS</Link>
-                                             {/* <ul className="submenu" style={{ display: "none" }}>
-                                                  <li>
-                                                       <a href="room-list.html">ROOM LIST</a>
-                                                  </li>
-                                                  <li>
-                                                       <a href="room-details.html">ROOM DETAILS</a>
-                                                  </li>
-                                             </ul>
-                                             <a className="mean-expand" href="#" style={{ fontSize: 22 }}>
-                                                  +
-                                             </a> */}
                                         </li>
                                         <li>
                                              <Link to="/location">LOCATION</Link>
