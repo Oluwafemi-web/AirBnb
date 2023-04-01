@@ -1,5 +1,6 @@
 import React from "react";
 import Socials from '../Socials'
+import sanityClient from "../../client";
 import { FaPlayCircle } from "react-icons/fa";
 
 export default function IndexAbout() {
@@ -10,6 +11,8 @@ export default function IndexAbout() {
                     <div className="row">
                          <div className="col-lg-7">
                               <div className="video-wrapper mt-90">
+
+
                                    <div className="video-overlay">
                                         <img src="img/banner/4.jpg" alt="" />
                                    </div>

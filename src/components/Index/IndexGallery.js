@@ -19,7 +19,7 @@ export default function IndexGallery() {
                .catch(console.error)
      }, [])
      return (
-          <section className="gallery-area pt-90">
+          <section className="gallery-area pt-90 pt-bm-90">
                <div className="container">
                     <div className="row">
                          <div className="col-md-8 mx-auto">
