@@ -14,7 +14,7 @@ export default function GalleryItems(props) {
                </div>
                <div className="gallery-hover">
                     <div className="gallery-icon">
-                         <a href="">
+                         <a href="/">
                               <span className="p-img">
                                    <img src={link} alt="" />
                               </span>
