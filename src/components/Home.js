@@ -1,6 +1,7 @@
 import React from "react";
 import Sliders from "./Slider";
 import IndexAbout from "./Index/IndexAbout";
+import IndexGallery from "./Index/IndexGallery";
 import IndexRoom from "./Index/IndexRooms";
 // import IndexCounter from "./Index/IndexCounter";
 // import IndexTeam from "./Index/IndexTeam";
@@ -15,7 +16,7 @@ export default function Home() {
                <IndexRoom />
                {/* <IndexServices /> */}
                {/* <IndexCounter /> */}
-               {/* <IndexGallery /> */}
+               <IndexGallery />
                {/* <IndexTeam /> */}
                {/* <IndexAdvert /> */}
                {/* <IndexPricing /> */}
