@@ -48,7 +48,7 @@ export default function IndexGallery() {
                          className="gallery gallery-masonry"
                          style={{ position: "relative", height: "497.125px" }}
                     >
-                         {galleryData && galleryData.map((room, index) => <GalleryItems key={index} category={gallery.category} img={room.mainImage.asset.url} alt={room.mainImage.alt} />)}
+                         {galleryData && galleryData.map((gallery, index) => <GalleryItems key={index} category={gallery.category} img={gallery.mainImage.asset.url} alt={gallery.mainImage.alt} />)}
 
                     </div>
                </div>
