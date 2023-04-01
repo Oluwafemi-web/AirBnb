@@ -12,7 +12,7 @@ const SliderItem = forwardRef((props, ref) => {
                <Carousel.Caption>
                     <div className='banner-content'>
                          <h1>{props.title}</h1>
-                         <p>{props.description}</p>
+                         <p style={{ fontSize: '22px' }}>{props.description}</p>
                          <div className="banner-btn">
                               <a className="default-btn" href="/rooms">explore</a>
                          </div>
