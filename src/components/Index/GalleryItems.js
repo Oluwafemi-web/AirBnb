@@ -6,7 +6,7 @@ import searchhover from '../img/search-hover.webp'
 export default function GalleryItems(props) {
      return (
           <div
-               className={`"gallery-item ${props.category}`}
+               className={`gallery-item ${props.category}`}
           >
                <div className="thumb">
                     <img src={props.img} alt="" />
