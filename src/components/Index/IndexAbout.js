@@ -34,7 +34,6 @@ export default function IndexAbout() {
                                         className="video-popup"
                                         href="https://www.youtube.com/watch?v=rXcp6s0VjZk"
                                    >
-                                        <FaPlayCircle />
                                    </a>
                               </div>
                          </div>
@@ -44,14 +43,6 @@ export default function IndexAbout() {
                                         <h3>{about.title}</h3>
                                         <p>
                                              {about.description}
-                                        </p>
-                                        <p>
-                                             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                             eiusmod tempor incididunt ut labore.
-                                        </p>
-                                        <p>
-                                             Fipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                             eiusmod tempor
                                         </p>
                                    </div>
                                    <div className="about-links">
