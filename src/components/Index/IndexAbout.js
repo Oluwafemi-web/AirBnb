@@ -1,20 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Socials from '../Socials'
 import sanityClient from "../../client";
 import { FaPlayCircle } from "react-icons/fa";
-
+import { useState } from 'react';
 export default function IndexAbout() {
+     const [aboutData, setAbout] = useState(null)
+
+     useEffect(() => {
+          sanityClient.fetch(`*[_type == "indexabout"] {
+               title,
+               description,
+               mainImage{
+                    asset->{
+                         _id,
+                         url
+                    },
+                    alt
+
+               }
+          }`).then(data => setAbout(data))
+               .catch(console.error)
+     }, [])
      return (
           <section className="about-area">
                <div className="container">
 
-                    <div className="row">
+                    {aboutData && aboutData.map((about, index) => <div className="row" key={index}>
                          <div className="col-lg-7">
                               <div className="video-wrapper mt-90">
-
-
                                    <div className="video-overlay">
-                                        <img src="img/banner/4.jpg" alt="" />
+                                        <img src={about.mainImage.asset.url} alt="" />
                                    </div>
                                    <a
                                         className="video-popup"
@@ -27,12 +42,9 @@ export default function IndexAbout() {
                          <div className="col-lg-5">
                               <div className="about-text">
                                    <div className="section-title">
-                                        <h3>about us</h3>
+                                        <h3>{about.title}</h3>
                                         <p>
-                                             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                             eiusmod tempor incididunt ut labore et dolore magna aliqua. Utjij
-                                             enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                                             nisi utjjij aliquip ex ea commodo consequat.
+                                             {about.description}
                                         </p>
                                         <p>
                                              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
@@ -48,7 +60,7 @@ export default function IndexAbout() {
                                    </div>
                               </div>
                          </div>
-                    </div>
+                    </div>)}
                </div>
           </section>
 
