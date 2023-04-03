@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Socials from '../Socials'
 import sanityClient from "../../client";
-import { FaPlayCircle } from "react-icons/fa";
 export default function IndexAbout() {
      const [aboutData, setAbout] = useState(null)
 
