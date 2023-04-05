@@ -7,7 +7,7 @@ export default defineType({
      type: 'document',
      fields: [
           defineField({
-               name: 'mainImage',
+               name: 'Image1',
                title: 'Image',
                type: 'image',
                options: {
@@ -15,15 +15,51 @@ export default defineType({
                },
           }),
           defineField({
-               name: 'category',
-               title: 'Category',
-               type: 'string'
-          })
+               name: 'Image2',
+               title: 'Image',
+               type: 'image',
+               options: {
+                    hotspot: true,
+               },
+          }),
+          defineField({
+               name: 'Image3',
+               title: 'Image',
+               type: 'image',
+               options: {
+                    hotspot: true,
+               },
+          }),
+          defineField({
+               name: 'Image4',
+               title: 'Image',
+               type: 'image',
+               options: {
+                    hotspot: true,
+               },
+          }),
+          defineField({
+               name: 'Image5',
+               title: 'Image',
+               type: 'image',
+               options: {
+                    hotspot: true,
+               },
+          }),
+          defineField({
+               name: 'Image6',
+               title: 'Image',
+               type: 'image',
+               options: {
+                    hotspot: true,
+               },
+          }),
+
      ],
 
      preview: {
           select: {
-               media: 'mainImage',
+               media: 'Image 1',
           },
           prepare(selection) {
                const { author } = selection

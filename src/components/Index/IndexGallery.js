@@ -1,13 +1,62 @@
-import GalleryItems from "./GalleryItems"
+// import GalleryItems from "./GalleryItems"
 import sanityClient from "../../client"
+import link from '../img/link.webp'
+import linkhover from '../img/link-hover.webp'
+import search from '../img/search.webp'
+import searchhover from '../img/search-hover.webp'
 import { useState, useEffect } from "react"
+import {
+
+     MDBCol,
+     MDBRow,
+} from 'mdb-react-ui-kit';
 export default function IndexGallery() {
+
      const [galleryData, setGallery] = useState(null)
 
      useEffect(() => {
           sanityClient.fetch(`*[_type == "gallery"] {
-               category,
-               mainImage{
+                Image1{
+                    asset->{
+                         _id,
+                         url
+                    },
+                    alt
+
+               },
+               Image2{
+                    asset->{
+                         _id,
+                         url
+                    },
+                    alt
+
+               },
+               Image3{
+                    asset->{
+                         _id,
+                         url
+                    },
+                    alt
+
+               },
+               Image4{
+                    asset->{
+                         _id,
+                         url
+                    },
+                    alt
+
+               },
+               Image5{
+                    asset->{
+                         _id,
+                         url
+                    },
+                    alt
+
+               },
+               Image6{
                     asset->{
                          _id,
                          url
@@ -44,15 +93,83 @@ export default function IndexGallery() {
                          <button data-filter=".gym">Gym</button>
                          <button data-filter=".hotel">Hotel</button>
                     </div>
-                    <div
+                    {galleryData && galleryData.map((item, index) => <div key={index}
                          className="gallery gallery-masonry"
                          style={{ position: "relative" }}
                     >
-                         {galleryData && galleryData.map((gallery, index) => <GalleryItems key={index} category={gallery.category} img={gallery.mainImage.asset.url} alt={gallery.mainImage.alt} />)}
+                         <MDBRow>
+                              <MDBCol lg={3} md={10} className='mb-4 mb-lg-0 gallery-item'>
+                                   <img
+                                        src={item.Image1.asset.url}
+                                        className='w-100 shadow-1-strong  mb-4 thumb'
+                                        alt='Boat on Calm Water'
+                                   />
+                                   <div className="gallery-hover">
+                                        <div className="gallery-icon">
+                                             <a href="#">
+                                                  <span className="p-img">
+                                                       <img src={link} alt="" />
+                                                  </span>
+                                                  <span className="s-img">
+                                                       <img src={linkhover} alt="" />
+                                                  </span>
+                                             </a>
+                                             <a className="image-popup" href="img/gallery/2.jpg">
+                                                  <span className="p-img">
+                                                       <img src={search} alt="" />
+                                                  </span>
+                                                  <span className="s-img">
+                                                       <img src={searchhover} alt="" />
+                                                  </span>
+                                             </a>
+                                        </div>
+                                   </div>
 
-                    </div>
+                              </MDBCol>
+
+                              <MDBCol lg={3} className='mb-4 mb-lg-0'>
+                                   <img
+                                        src={item.Image2.asset.url}
+                                        className='w-100 shadow-1-strong  mb-4'
+                                        alt='Mountains in the Clouds'
+                                   />
+
+                                   <img
+                                        src={item.Image5.asset.url}
+                                        className='w-100 shadow-1-strong  mb-4'
+                                        alt='Boat on Calm Water'
+                                   />
+                              </MDBCol>
+                              <MDBCol lg={3} className='mb-4 mb-lg-0'>
+                                   <img
+                                        src={item.Image3.asset.url}
+                                        className='w-100 shadow-1-strong  mb-4'
+                                        alt='Mountains in the Clouds'
+                                   />
+
+                                   <img
+                                        src={item.Image6.asset.url}
+                                        className='w-100 shadow-1-strong  mb-4'
+                                        alt='Boat on Calm Water'
+                                   />
+                              </MDBCol>
+
+                              <MDBCol lg={3} className='mb-4 mb-lg-0'>
+                                   <img
+                                        src={item.Image4.asset.url}
+                                        className='w-100 shadow-1-strong  mb-4'
+                                        alt='Waves at Sea'
+                                   />
+
+                              </MDBCol>
+                         </MDBRow>
+
+                    </div>)}
+
                </div>
           </section>
 
      )
 }
+
+
