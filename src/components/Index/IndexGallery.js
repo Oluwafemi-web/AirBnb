@@ -70,7 +70,7 @@ export default function IndexGallery() {
                .catch(console.error)
      }, [])
      return (
-          galleryData && galleryData.map((index, item) => <section className="gallery-area pt-90 pt-bm-90" key={index}>
+          galleryData && galleryData.map((item, index) => <section className="gallery-area pt-90 pt-bm-90" key={index}>
                <div className="container">
                     <div className="row">
                          <div className="col-md-8 mx-auto">
