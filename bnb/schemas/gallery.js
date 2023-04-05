@@ -7,6 +7,16 @@ export default defineType({
      type: 'document',
      fields: [
           defineField({
+               name: 'title',
+               title: 'Title',
+               type: 'string',
+          }),
+          defineField({
+               name: 'description',
+               title: 'Description',
+               type: 'text',
+          }),
+          defineField({
                name: 'Image1',
                title: 'Image',
                type: 'image',

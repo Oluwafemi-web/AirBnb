@@ -16,6 +16,8 @@ export default function IndexGallery() {
 
      useEffect(() => {
           sanityClient.fetch(`*[_type == "gallery"] {
+               title,
+               description,
                 Image1{
                     asset->{
                          _id,
@@ -68,16 +70,14 @@ export default function IndexGallery() {
                .catch(console.error)
      }, [])
      return (
-          <section className="gallery-area pt-90 pt-bm-90">
+          galleryData && galleryData.map((index, item) => <section className="gallery-area pt-90 pt-bm-90" key={index}>
                <div className="container">
                     <div className="row">
                          <div className="col-md-8 mx-auto">
                               <div className="section-title text-center">
-                                   <h3>our gallery</h3>
+                                   <h3>{item.title}</h3>
                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellente
-                                        sque vel volutpat felis, eu condimentum massa. Pellentesque mollis
-                                        eros vel mattis tempor. Aliquam
+                                        {item.description}
                                    </p>
                               </div>
                          </div>
@@ -93,82 +93,195 @@ export default function IndexGallery() {
                          <button data-filter=".gym">Gym</button>
                          <button data-filter=".hotel">Hotel</button>
                     </div>
-                    {galleryData && galleryData.map((item, index) => <div key={index}
+                    <div
                          className="gallery gallery-masonry"
                          style={{ position: "relative" }}
                     >
                          <MDBRow>
-                              <MDBCol lg={3} md={10} className='mb-4 mb-lg-0 gallery-item'>
-                                   <img
-                                        src={item.Image1.asset.url}
-                                        className='w-100 shadow-1-strong  mb-4 thumb'
-                                        alt='Boat on Calm Water'
-                                   />
-                                   <div className="gallery-hover">
-                                        <div className="gallery-icon">
-                                             <a href="/">
-                                                  <span className="p-img">
-                                                       <img src={link} alt="" />
-                                                  </span>
-                                                  <span className="s-img">
-                                                       <img src={linkhover} alt="" />
-                                                  </span>
-                                             </a>
-                                             <a className="image-popup" href="img/gallery/2.jpg">
-                                                  <span className="p-img">
-                                                       <img src={search} alt="" />
-                                                  </span>
-                                                  <span className="s-img">
-                                                       <img src={searchhover} alt="" />
-                                                  </span>
-                                             </a>
+                              <MDBCol lg={3} md={10} className='mb-4 mb-lg-0'>
+                                   <div className="item-gallery">
+                                        <img
+                                             src={item.Image1.asset.url}
+                                             className='w-100 shadow-1-strong mb-4 thumb'
+                                             alt='Boat on Calm Water'
+                                        />
+
+                                        <div className="hover-gallery">
+                                             <div className="gallery-icon">
+                                                  <a href="/">
+                                                       <span className="p-img">
+                                                            <img src={link} alt="" />
+                                                       </span>
+                                                       <span className="s-img">
+                                                            <img src={linkhover} alt="" />
+                                                       </span>
+                                                  </a>
+                                                  <a className="image-popup" href={item.Image1.asset.url}>
+                                                       <span className="p-img">
+                                                            <img src={search} alt="" />
+                                                       </span>
+                                                       <span className="s-img">
+                                                            <img src={searchhover} alt="" />
+                                                       </span>
+                                                  </a>
+                                             </div>
                                         </div>
                                    </div>
+                              </MDBCol>
 
+                              <MDBCol lg={3} className='mb-4 mb-lg-0 '>
+                                   <div className="item-gallery">
+
+                                        <img
+                                             src={item.Image2.asset.url}
+                                             className='w-100 shadow-1-strong mb-4'
+                                             alt='Mountains in the Clouds'
+                                        />
+                                        <div className="hover-gallery">
+                                             <div className="gallery-icon">
+                                                  <a href="/">
+                                                       <span className="p-img">
+                                                            <img src={link} alt="" />
+                                                       </span>
+                                                       <span className="s-img">
+                                                            <img src={linkhover} alt="" />
+                                                       </span>
+                                                  </a>
+                                                  <a className="image-popup" href={item.Image2.asset.url}>
+                                                       <span className="p-img">
+                                                            <img src={search} alt="" />
+                                                       </span>
+                                                       <span className="s-img">
+                                                            <img src={searchhover} alt="" />
+                                                       </span>
+                                                  </a>
+                                             </div>
+                                        </div>
+                                   </div>
+                                   <div className="item-gallery">
+                                        <img
+                                             src={item.Image5.asset.url}
+                                             className='w-100 shadow-1-strong mb-4'
+                                             alt='Boat on Calm Water'
+                                        />
+                                        <div className="hover-gallery">
+                                             <div className="gallery-icon">
+                                                  <a href="/">
+                                                       <span className="p-img">
+                                                            <img src={link} alt="" />
+                                                       </span>
+                                                       <span className="s-img">
+                                                            <img src={linkhover} alt="" />
+                                                       </span>
+                                                  </a>
+                                                  <a className="image-popup" href={item.Image5.asset.url}>
+                                                       <span className="p-img">
+                                                            <img src={search} alt="" />
+                                                       </span>
+                                                       <span className="s-img">
+                                                            <img src={searchhover} alt="" />
+                                                       </span>
+                                                  </a>
+                                             </div>
+                                        </div>
+                                   </div>
                               </MDBCol>
 
                               <MDBCol lg={3} className='mb-4 mb-lg-0'>
-                                   <img
-                                        src={item.Image2.asset.url}
-                                        className='w-100 shadow-1-strong  mb-4'
-                                        alt='Mountains in the Clouds'
-                                   />
+                                   <div className="item-gallery">
 
-                                   <img
-                                        src={item.Image5.asset.url}
-                                        className='w-100 shadow-1-strong  mb-4'
-                                        alt='Boat on Calm Water'
-                                   />
+                                        <img
+                                             src={item.Image3.asset.url}
+                                             className='w-100 shadow-1-strong mb-4'
+                                             alt='Mountains in the Clouds'
+                                        />
+                                        <div className="hover-gallery">
+                                             <div className="gallery-icon">
+                                                  <a href="/">
+                                                       <span className="p-img">
+                                                            <img src={link} alt="" />
+                                                       </span>
+                                                       <span className="s-img">
+                                                            <img src={linkhover} alt="" />
+                                                       </span>
+                                                  </a>
+                                                  <a className="image-popup" href={item.Image3.asset.url}>
+                                                       <span className="p-img">
+                                                            <img src={search} alt="" />
+                                                       </span>
+                                                       <span className="s-img">
+                                                            <img src={searchhover} alt="" />
+                                                       </span>
+                                                  </a>
+                                             </div>
+                                        </div>
+                                   </div>
+                                   <div className="item-gallery">
+
+                                        <img
+                                             src={item.Image6.asset.url}
+                                             className='w-100 shadow-1-strong mb-4'
+                                             alt='Boat on Calm Water'
+                                        />
+                                        <div className="hover-gallery">
+                                             <div className="gallery-icon">
+                                                  <a href="/">
+                                                       <span className="p-img">
+                                                            <img src={link} alt="" />
+                                                       </span>
+                                                       <span className="s-img">
+                                                            <img src={linkhover} alt="" />
+                                                       </span>
+                                                  </a>
+                                                  <a className="image-popup" href={item.Image6.asset.url}>
+                                                       <span className="p-img">
+                                                            <img src={search} alt="" />
+                                                       </span>
+                                                       <span className="s-img">
+                                                            <img src={searchhover} alt="" />
+                                                       </span>
+                                                  </a>
+                                             </div>
+                                        </div>
+                                   </div>
                               </MDBCol>
-                              <MDBCol lg={3} className='mb-4 mb-lg-0'>
-                                   <img
-                                        src={item.Image3.asset.url}
-                                        className='w-100 shadow-1-strong  mb-4'
-                                        alt='Mountains in the Clouds'
-                                   />
-
-                                   <img
-                                        src={item.Image6.asset.url}
-                                        className='w-100 shadow-1-strong  mb-4'
-                                        alt='Boat on Calm Water'
-                                   />
-                              </MDBCol>
 
                               <MDBCol lg={3} className='mb-4 mb-lg-0'>
-                                   <img
-                                        src={item.Image4.asset.url}
-                                        className='w-100 shadow-1-strong  mb-4'
-                                        alt='Waves at Sea'
-                                   />
+                                   <div className="item-gallery">
 
+                                        <img
+                                             src={item.Image4.asset.url}
+                                             className='w-100 shadow-1-strong mb-4'
+                                             alt='Waves at Sea'
+                                        />
+                                        <div className="hover-gallery">
+                                             <div className="gallery-icon">
+                                                  <a href="/">
+                                                       <span className="p-img">
+                                                            <img src={link} alt="" />
+                                                       </span>
+                                                       <span className="s-img">
+                                                            <img src={linkhover} alt="" />
+                                                       </span>
+                                                  </a>
+                                                  <a className="image-popup" href={item.Image4.asset.url}>
+                                                       <span className="p-img">
+                                                            <img src={search} alt="" />
+                                                       </span>
+                                                       <span className="s-img">
+                                                            <img src={searchhover} alt="" />
+                                                       </span>
+                                                  </a>
+                                             </div>
+                                        </div>
+                                   </div>
                               </MDBCol>
                          </MDBRow>
 
-                    </div>)}
+                    </div>
 
                </div>
-          </section>
-
+          </section>)
      )
 }
 
