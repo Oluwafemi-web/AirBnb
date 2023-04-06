@@ -1,21 +1,44 @@
 // import React from "react";
 import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from 'react-icons/fa';
-
+import { useState, useEffect } from 'react';
+import sanityClient from '../client'
 import Socials from './Socials';
-import image from './img/1.webp'
 import { Link } from "react-router-dom";
 
 export default function Contact() {
+     const [contactDetails, setDetails] = useState(null)
+     useEffect(() => {
+          sanityClient.fetch(`*[_type == "contacts"] {
+               heading,
+               subheading,
+               phone,
+               email,
+               address,
+               facebook,
+               instagram,
+               twitter,
+               pinterest,
+               mainImage{
+                    asset->{
+                         _id,
+                         url
+                    },
+                    alt
+
+               }
+          }`).then(data => setDetails(data))
+               .catch(console.error)
+     }, [])
      return (
-          <>
-               <section className="breadcrumb-area overlay-dark-2 bg-3" style={{ backgroundImage: `url(${image})` }}>
+          contactDetails && contactDetails.map((details, index) => <div key={index}>
+               <section className="breadcrumb-area overlay-dark-2 bg-3" style={{ backgroundImage: `url(${details.mainImage.asset.url})` }}>
 
                     <div className="container">
                          <div className="row">
                               <div className="col-12">
                                    <div className="breadcrumb-text text-center">
-                                        <h2>contact us</h2>
-                                        <p>A quality room of Oestin with sea or mountain view</p>
+                                        <h2>{details.heading}</h2>
+                                        <p>{details.subheading}</p>
                                         <div className="breadcrumb-bar">
                                              <ul className="breadcrumb">
                                                   <li>
@@ -35,7 +58,7 @@ export default function Contact() {
                     <div className="google-map-area w-100">
                          <iframe title='mao'
                               className="contact-map"
-                              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2136.986005919501!2d-73.9685579655238!3d40.75862446708152!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c258e4a1c884e5%3A0x24fe1071086b36d5!2sThe%20Atrium!5e0!3m2!1sen!2sbd!4v1585132512970!5m2!1sen!2sbd"
+                              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3053.995897552329!2d18.374831415407343!3d40.05319248559249!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x134414618186d813%3A0x88441cf80da37c48!2sVico%20dei%20Cirioli%2C%2073037%20Poggiardo%20LE%2C%20Italy!5e0!3m2!1sen!2sng!4v1680744740058!5m2!1sen!2sng"
                          />
                     </div>
                     {/* Google Map Area Start */}
@@ -50,24 +73,24 @@ export default function Contact() {
                                              <span className="c-icon">
                                                   <FaPhoneAlt />
                                              </span>
-                                             <span className="c-text">0123456789</span>
+                                             <span className="c-text">{details.phone}</span>
                                         </p>
                                         <p>
                                              <span className="c-icon">
                                                   <FaEnvelope />
                                              </span>
-                                             <span className="c-text">demo@example.com</span>
+                                             <span className="c-text">{details.email}</span>
                                         </p>
                                         <p>
                                              <span className="c-icon">
                                                   <FaMapMarkerAlt />
                                              </span>
-                                             <span className="c-text">Your address goes here</span>
+                                             <span className="c-text">{details.address}</span>
                                         </p>
                                    </div>
                                    <h4 className="contact-title">social media</h4>
                                    <div className="link-social">
-                                        <Socials />
+                                        <Socials facebook={details.facebook} instagram={details.instagram} twitter={details.twitter} pinterest={details.pinterest} />
                                    </div>
                               </div>
                               <div className="col-md-8">
@@ -100,6 +123,6 @@ export default function Contact() {
                     </div>
                </section>
 
-          </>
+          </div>)
      )
 }

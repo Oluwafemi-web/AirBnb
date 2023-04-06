@@ -1,22 +1,22 @@
-import { FaFacebookF, FaInstagram, FaPinterestP, FaRss, FaTwitter } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaPinterestP, FaTwitter } from "react-icons/fa";
 
 
-export default function Socials() {
+export default function Socials(props) {
      return (
           <>
-               <a href="https://www.facebook.com/">
+               <a href={props.facebook}>
                     <FaFacebookF />
                </a>
-               <a href="https://www.instagram.com/">
+               <a href={props.instagram}>
                     <FaInstagram />
                </a>
-               <a href="https://www.rss.com/">
+               {/* <a href="https://www.rss.com/">
                     <FaRss />
-               </a>
-               <a href="https://twitter.com/">
+               </a> */}
+               <a href={props.twitter}>
                     <FaTwitter />
                </a>
-               <a href="https://www.pinterest.com/">
+               <a href={props.pinterest}>
                     <FaPinterestP />
                </a>
           </>

@@ -8,10 +8,10 @@ export default function RoomItem(props) {
                     <div className="room-hover text-center">
                          <div className="hover-text">
                               <h3>{props.title}</h3>
-                              <div className="p-amount">
+                              {/* <div className="p-amount">
                                    <span>{props.price}</span>
                                    <span className="count">Per Night</span>
-                              </div>
+                              </div> */}
                               <p>{props.description}</p>
                               <div className="room-btn">
                                    <a href="room-details.html" className="default-btn">DETAILS</a>

@@ -42,7 +42,7 @@ export default function NavBar() {
                     <div className="row">
                          <div className="col-xl-5 col-lg-4 col-sm-4 col-12">
                               <div className="logo">
-                                   <a href="index.html">
+                                   <a href="/">
                                         <img src={logo} alt="Oestin" />
                                    </a>
                               </div>
@@ -51,7 +51,7 @@ export default function NavBar() {
                               <div className="header-top fix">
                                    <div className="header-contact">
                                         <span className="text-theme">Contact:</span>
-                                        <span>0123456789</span>
+                                        <span>+393397263322</span>
                                    </div>
                                    <div className="header-links">
                                         <a href="https://www.facebook.com/">

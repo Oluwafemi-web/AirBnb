@@ -1,10 +1,27 @@
 import React, { useState, useEffect } from "react";
 import sanityClient from '../client'
-import image from './img/1.webp'
 import { Link } from "react-router-dom";
 import TeamList from "./Index/TeamList";
 export default function Team() {
      const [teamList, setTeamList] = useState(null)
+     const [teamText, setText] = useState(null)
+     useEffect(() => {
+          sanityClient.fetch(`*[_type == "teamdescription"] {
+               heading,
+               subheading,
+               title,
+               description,
+               mainImage{
+                    asset->{
+                         _id,
+                         url
+                    },
+                    alt
+
+               }
+          }`).then(data => setText(data))
+               .catch(console.error)
+     }, [])
      useEffect(() => {
           sanityClient.fetch(`*[_type == "team"] {
                name,
@@ -24,15 +41,15 @@ export default function Team() {
 
 
      return (
-          <>
-               <section className="breadcrumb-area overlay-dark-2 bg-3" style={{ backgroundImage: `url(${image})` }}>
+          teamText && teamText.map((text, index) => <div key={index}>
+               <section className="breadcrumb-area overlay-dark-2 bg-3" style={{ backgroundImage: `url(${text.mainImage.asset.url})` }}>
 
                     <div className="container">
                          <div className="row">
                               <div className="col-12">
                                    <div className="breadcrumb-text text-center">
-                                        <h2>our staff</h2>
-                                        <p>A quality room of Oestin with sea or mountain view</p>
+                                        <h2>{text.heading}</h2>
+                                        <p>{text.subheading}</p>
                                         <div className="breadcrumb-bar">
                                              <ul className="breadcrumb">
                                                   <li>
@@ -51,11 +68,9 @@ export default function Team() {
                          <div className="row">
                               <div className="col-md-8 mx-auto">
                                    <div className="section-title text-center">
-                                        <h3>our special staff</h3>
+                                        <h3>{text.title}</h3>
                                         <p>
-                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellente
-                                             sque vel volutpat felis, eu condimentum massa. Pellentesque mollis
-                                             eros vel mattis tempor. Aliquam{" "}
+                                             {text.description}
                                         </p>
                                    </div>
                               </div>
@@ -64,25 +79,25 @@ export default function Team() {
                               {teamList && teamList.map((team, index) => <TeamList key={index} url={team.image.asset.url} position={team.position} name={team.name} bio={team.bio} />)}
 
                               {/* <div className="col-md-12">
-                                   <div className="pagination-content">
-                                        <ul className="pagination">
-                                             <li>
-                                                  <a href="#">1</a>
-                                             </li>
-                                             <li className="active">
-                                                  <a href="#">2</a>
-                                             </li>
-                                             <li>
-                                                  <a href="#">3</a>
-                                             </li>
-                                        </ul>
-                                   </div>
-                              </div> */}
+                            <div className="pagination-content">
+                                 <ul className="pagination">
+                                      <li>
+                                           <a href="#">1</a>
+                                      </li>
+                                      <li className="active">
+                                           <a href="#">2</a>
+                                      </li>
+                                      <li>
+                                           <a href="#">3</a>
+                                      </li>
+                                 </ul>
+                            </div>
+                       </div> */}
                          </div>
                     </div>
                </section>
 
-          </>
+          </div>)
 
      )
 }

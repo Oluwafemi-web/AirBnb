@@ -4,9 +4,17 @@ import sanityClient from '../../client'
 import IndexRoomItems from './IndexRoomItems'
 export default function IndexRoom() {
      const [roomData, setRoom] = useState(null)
+     const [roomText, setText] = useState(null)
+     useEffect(() => {
+          sanityClient.fetch(`*[_type == "indexroomtext"] {
+               title,
+               description
+          }`).then(data => setText(data))
+               .catch(console.error)
+     }, [])
 
      useEffect(() => {
-          sanityClient.fetch(`*[_type == "room"] {
+          sanityClient.fetch(`*[_type == "indexroom"] {
                title,
                description,
                mainImage{
@@ -25,14 +33,13 @@ export default function IndexRoom() {
                <div className="container">
                     <div className="row">
                          <div className="col-md-8 mx-auto">
-                              <div className="section-title text-center">
-                                   <h3>our favorite rooms</h3>
+                              {roomText && roomText.map((text, index) => <div className="section-title text-center" key={index}>
+                                   <h3>{text.title}</h3>
                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                                        ad minim veniam
+                                        {text.description}
                                    </p>
-                              </div>
+                              </div>)}
+
                          </div>
                     </div>
                </div>

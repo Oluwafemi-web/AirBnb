@@ -1,10 +1,27 @@
 import React, { useState, useEffect } from "react";
 import sanityClient from '../client'
 import LocationItem from "./LocationItem";
-import image from './img/1.webp'
 import { Link } from "react-router-dom";
 export default function Location() {
      const [locationData, setLocation] = useState(null)
+     const [locationText, setText] = useState(null)
+     useEffect(() => {
+          sanityClient.fetch(`*[_type == "locationdescription"] {
+               heading,
+               subheading,
+               title,
+               description,
+               mainImage{
+                    asset->{
+                         _id,
+                         url
+                    },
+                    alt
+
+               }
+          }`).then(data => setText(data))
+               .catch(console.error)
+     }, [])
 
      useEffect(() => {
           sanityClient.fetch(`*[_type == "location"] {
@@ -23,15 +40,15 @@ export default function Location() {
      }, [])
 
      return (
-          <>
-               <section className="breadcrumb-area overlay-dark-2 bg-3" style={{ backgroundImage: `url(${image})` }}>
+          locationText && locationText.map((text, index) => <div key={index}>
+               <section className="breadcrumb-area overlay-dark-2 bg-3" style={{ backgroundImage: `url(${text.mainImage.asset.url})` }}>
 
                     <div className="container">
                          <div className="row">
                               <div className="col-12">
                                    <div className="breadcrumb-text text-center">
-                                        <h2>near places</h2>
-                                        <p>A quality room of Oestin with sea or mountain view</p>
+                                        <h2>{text.heading}</h2>
+                                        <p>{text.subheading}</p>
                                         <div className="breadcrumb-bar">
                                              <ul className="breadcrumb">
                                                   <li>
@@ -51,11 +68,9 @@ export default function Location() {
                          <div className="row">
                               <div className="col-md-8 mx-auto">
                                    <div className="section-title text-center">
-                                        <h3>near nice places</h3>
+                                        <h3>{text.title}</h3>
                                         <p className="pb-10">
-                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellente sque
-                                             vel volutpat felis, eu condimentum massa. Pellentesque mollis eros vel
-                                             mattis tempor. Aliquam{" "}
+                                             {text.description}
                                         </p>
                                    </div>
                               </div>
@@ -68,7 +83,7 @@ export default function Location() {
 
 
                </section>
-          </>
+          </div>)
 
      )
 }

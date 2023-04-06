@@ -22,7 +22,7 @@ export default defineType({
           defineField({
                name: 'description',
                title: 'Description',
-               type: 'string',
+               type: 'text',
                // to: { type: 'author' },
           }),
           defineField({
@@ -33,16 +33,7 @@ export default defineType({
                     hotspot: true,
                },
           }),
-          defineField({
-               name: 'publishedAt',
-               title: 'Published at',
-               type: 'datetime',
-          }),
-          defineField({
-               name: 'body',
-               title: 'Body',
-               type: 'blockContent',
-          }),
+
      ],
 
      preview: {

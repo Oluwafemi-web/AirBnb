@@ -1,4 +1,10 @@
 import blockContent from './blockContent'
+import indexroom from './indexroom'
+import indexroomdescription from './indexroomdescription'
+import roomdescription from './roomdescription'
+import locationdescription from './locationdescription'
+import eventdescription from './eventdescription'
+import teamdescription from './teamdescription'
 import room from './room'
 import team from './team'
 import slider from './slider'
@@ -9,5 +15,6 @@ import footer from './footer'
 import locations from './locations'
 import events from './events'
 import gallery from './gallery'
+import contacts from './contacts'
 
-export const schemaTypes = [room, team, slider, service, pricing, footer, indexabout, locations, events, gallery, blockContent]
+export const schemaTypes = [slider, indexabout, indexroomdescription, indexroom, gallery, roomdescription, room, teamdescription, team, service, pricing, locationdescription, locations, eventdescription, events, contacts, footer, blockContent]

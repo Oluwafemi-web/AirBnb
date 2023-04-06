@@ -1,31 +1,19 @@
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
-     name: 'service',
-     title: 'Services',
+     name: 'teamdescription',
+     title: 'Team(Banner text & Description)',
      type: 'document',
      fields: [
           defineField({
-               name: 'title',
-               title: 'Title',
+               name: 'heading',
+               title: 'Heading',
                type: 'string',
           }),
           defineField({
-               name: 'description',
-               title: 'Description',
-               type: 'text',
-               // options: {
-               //      source: 'title',
-               //      maxLength: 96,
-               // },
-          }),
-          defineField({
-               name: 'iconImage',
-               title: 'Icon image',
-               type: 'image',
-               options: {
-                    hotspot: true,
-               },
+               name: 'subheading',
+               title: 'Sub-Heading',
+               type: 'string',
           }),
           defineField({
                name: 'mainImage',
@@ -35,12 +23,23 @@ export default defineType({
                     hotspot: true,
                },
           }),
+          defineField({
+               name: 'title',
+               title: 'Title',
+               type: 'string',
+          }),
+          defineField({
+               name: 'description',
+               title: 'Description',
+               type: 'text',
+               // to: { type: 'author' },
+          }),
+
      ],
 
      preview: {
           select: {
-               title: 'title',
-               author: 'author.name',
+               title: 'heading',
                media: 'mainImage',
           },
           prepare(selection) {
