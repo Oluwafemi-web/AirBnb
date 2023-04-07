@@ -53,7 +53,7 @@ export default function Contact() {
                     </div>
                </section>
 
-               <div className="google-map-area">
+               <div className="google-map-area" style={{ marginTop: '70px' }}>
                     {/* Google Map Area Start */}
                     <div className="google-map-area w-100">
                          <iframe title='mao'

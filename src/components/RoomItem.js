@@ -1,6 +1,6 @@
 export default function RoomItem(props) {
      return (
-          <div className="col-lg-4 col-sm-6 col-12">
+          <div className="col-lg-6 col-sm-6 col-12">
                <div className="single-room">
                     {/* < img src={room.mainImage.asset.url} alt={room.mainImage.alt} /> */}
                     < img src={props.url} alt={props.alt} />

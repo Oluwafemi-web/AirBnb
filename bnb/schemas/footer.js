@@ -40,6 +40,26 @@ export default defineType({
                type: 'string',
                // to: { type: 'author' },
           }),
+          defineField({
+               name: 'facebook',
+               title: 'Facebook link',
+               type: 'string',
+          }),
+          defineField({
+               name: 'instagram',
+               title: 'Instagram link',
+               type: 'string',
+          }),
+          defineField({
+               name: 'twitter',
+               title: 'Twitter link',
+               type: 'string',
+          }),
+          defineField({
+               name: 'pinterest',
+               title: 'Pinterest link',
+               type: 'string',
+          })
      ],
 
      preview: {
