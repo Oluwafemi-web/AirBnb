@@ -12,6 +12,61 @@ import {
 } from 'mdb-react-ui-kit';
 export default function IndexGallery() {
 
+
+     async function filterGalleryOnLoad() {
+          // Wait for DOM to load completely
+          await new Promise(resolve => {
+               if (document.readyState === 'loading') {
+                    document.addEventListener('load', resolve);
+               } else {
+                    resolve();
+               }
+          });
+
+          // Get all the filter buttons
+          const galleryFilter = document.querySelector(".gallery-filter");
+          console.log(galleryFilter)
+          const filterButtons = galleryFilter.querySelectorAll("button");
+
+          // Get all the gallery items
+          const galleryItems = document.querySelectorAll(".item-gallery");
+
+          // Add click event listener to each filter button
+          filterButtons.forEach(function (button) {
+               button.addEventListener("click", function () {
+                    // Remove "active" class from all buttons
+                    filterButtons.forEach(function (btn) {
+                         btn.classList.remove("active");
+                    });
+
+                    // Add "active" class to clicked button
+                    this.classList.add("active");
+
+                    // Get the filter value from the button
+                    const filterValue = this.getAttribute("data-filter");
+
+                    // Loop through all gallery items
+                    galleryItems.forEach(function (item) {
+                         // Check if the item has the same class as the filter value or if the filter value is "*"
+                         if (item.classList.contains(filterValue) || filterValue === "*") {
+                              // Show the item
+                              item.parentElement.style.position = "relative";
+                              item.style.display = "block";
+                         } else {
+                              // Hide the item
+                              item.parentElement.style.position = "absolute";
+                              item.style.display = "none";
+                         }
+                    });
+               });
+          });
+     }
+
+     // Call the async function to run the code when the DOM is completely loaded
+     filterGalleryOnLoad();
+
+
+
      const [galleryData, setGallery] = useState(null)
 
      useEffect(() => {
@@ -88,10 +143,10 @@ export default function IndexGallery() {
                          <button data-filter="*" className="active">
                               All
                          </button>
-                         <button data-filter=".spa">Spa</button>
-                         <button data-filter=".restaurent">Restaurent</button>
-                         <button data-filter=".gym">Gym</button>
-                         <button data-filter=".hotel">Hotel</button>
+                         <button data-filter="spa">Spa</button>
+                         <button data-filter="restaurent">Restaurent</button>
+                         <button data-filter="gym">Gym</button>
+                         <button data-filter="hotel">Hotel</button>
                     </div>
                     <div
                          className="gallery gallery-masonry"
@@ -99,7 +154,7 @@ export default function IndexGallery() {
                     >
                          <MDBRow>
                               <MDBCol lg={3} md={10} className='mb-4 mb-lg-0'>
-                                   <div className="item-gallery">
+                                   <div className="item-gallery spa">
                                         <img
                                              src={item.Image1.asset.url}
                                              className='w-100 shadow-1-strong mb-4 thumb'
@@ -130,7 +185,7 @@ export default function IndexGallery() {
                               </MDBCol>
 
                               <MDBCol lg={3} className='mb-4 mb-lg-0 '>
-                                   <div className="item-gallery">
+                                   <div className="item-gallery restaurent hotel">
 
                                         <img
                                              src={item.Image2.asset.url}
@@ -158,7 +213,7 @@ export default function IndexGallery() {
                                              </div>
                                         </div>
                                    </div>
-                                   <div className="item-gallery">
+                                   <div className="item-gallery gym">
                                         <img
                                              src={item.Image5.asset.url}
                                              className='w-100 shadow-1-strong mb-4'
@@ -188,7 +243,7 @@ export default function IndexGallery() {
                               </MDBCol>
 
                               <MDBCol lg={3} className='mb-4 mb-lg-0'>
-                                   <div className="item-gallery">
+                                   <div className="item-gallery spa hotel">
 
                                         <img
                                              src={item.Image3.asset.url}
@@ -216,7 +271,7 @@ export default function IndexGallery() {
                                              </div>
                                         </div>
                                    </div>
-                                   <div className="item-gallery">
+                                   <div className="item-gallery spa hotel gym">
 
                                         <img
                                              src={item.Image6.asset.url}
@@ -247,7 +302,7 @@ export default function IndexGallery() {
                               </MDBCol>
 
                               <MDBCol lg={3} className='mb-4 mb-lg-0'>
-                                   <div className="item-gallery">
+                                   <div className="item-gallery restaurent hotel">
 
                                         <img
                                              src={item.Image4.asset.url}
