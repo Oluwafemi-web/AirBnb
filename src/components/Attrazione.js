@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import sanityClient from '../client'
+import AttrazioneList from "./Index/AttrazioneList";
 import { Link } from "react-router-dom";
 export default function Attrazione() {
-     const [teamList, setTeamList] = useState(null)
-     const [teamText, setText] = useState(null)
+     const [attrazioneList, setAttrazioneList] = useState(null)
+     const [attrazioneText, setText] = useState(null)
      useEffect(() => {
-          sanityClient.fetch(`*[_type == "teamdescription"] {
+          sanityClient.fetch(`*[_type == "attrazionedescription"] {
                heading,
                subheading,
                title,
@@ -22,10 +23,9 @@ export default function Attrazione() {
                .catch(console.error)
      }, [])
      useEffect(() => {
-          sanityClient.fetch(`*[_type == "team"] {
-               name,
-               position,
-               bio,
+          sanityClient.fetch(`*[_type == "attrazione"] {
+               roomname,
+               description,
                image{
                     asset->{
                          _id,
@@ -34,13 +34,13 @@ export default function Attrazione() {
                     alt
 
                }
-          }`).then(data => setTeamList(data))
+          }`).then(data => setAttrazioneList(data))
                .catch(console.error)
      }, [])
 
 
      return (
-          teamText && teamText.map((text, index) => <div key={index}>
+          attrazioneText && attrazioneText.map((text, index) => <div key={index}>
                <section className="breadcrumb-area overlay-dark-2 bg-3" style={{ backgroundImage: `url(${text.mainImage.asset.url})` }}>
 
                     <div className="container">
@@ -62,7 +62,7 @@ export default function Attrazione() {
                          </div>
                     </div>
                </section>
-               <section className="team-area pt-90 team-section">
+               <section className="room-area pt-90">
                     <div className="container">
                          <div className="row">
                               <div className="col-md-8 mx-auto">
@@ -75,25 +75,18 @@ export default function Attrazione() {
                               </div>
                          </div>
                          <div className="row">
-                              {teamList && teamList.map((team, index) => <TeamList key={index} url={team.image.asset.url} position={team.position} name={team.name} bio={team.bio} />)}
+                              {/* {teamList && teamList.map((team, index) => <TeamList key={index} url={team.image.asset.url} position={team.position} name={team.name} bio={team.bio} />)} */}
 
-                              {/* <div className="col-md-12">
-                            <div className="pagination-content">
-                                 <ul className="pagination">
-                                      <li>
-                                           <a href="#">1</a>
-                                      </li>
-                                      <li className="active">
-                                           <a href="#">2</a>
-                                      </li>
-                                      <li>
-                                           <a href="#">3</a>
-                                      </li>
-                                 </ul>
-                            </div>
-                       </div> */}
                          </div>
                     </div>
+                    <div className="container">
+                         <div className="row">
+                              <div className="col-12">
+                                   {attrazioneList && attrazioneList.map((item, index) => <AttrazioneList key={index} img={item.image.asset.url} title={item.roomname} description={item.description} />)}
+                              </div>
+                         </div>
+                    </div>
+
                </section>
 
           </div>)

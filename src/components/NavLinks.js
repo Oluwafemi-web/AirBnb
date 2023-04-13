@@ -12,7 +12,7 @@ export default function NavLinks() {
                     <NavLink to="/events">SERVIZI</NavLink>
                </li>
                <li>
-                    <NavLink to="/team">ATTRAZIONE</NavLink>
+                    <NavLink to="/attrazione">ATTRAZIONE</NavLink>
                </li>
                <li>
                     <NavLink to="/contact">CONTACT</NavLink>
