@@ -3,12 +3,10 @@ import { useState, useEffect } from 'react';
 import sanityClient from './client';
 import './App.css';
 import Contact from './components/Contact';
-import Events from './components/Events';
+import Servizi from './components/Servizi';
 import Home from './components/Home'
 import Room from './components/Rooms';
-import Team from './components/Team';
-import Locations from './components/Location';
-import Activities from './components/Activities';
+import Attrazione from './components/Attrazione';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer'
 
@@ -17,7 +15,6 @@ import './components/css/default.css'
 import './components/css/style.css'
 import './components/css/slider.css'
 import './components/css/responsive.css'
-// import IndexNews from './components/Index/IndexNews';
 
 function App() {
   const [footer, updateFooter] = useState(null)
@@ -44,12 +41,10 @@ function App() {
       <NavBar />
       <Routes>
         <Route element={<Home />} path='/' exact={true} />
-        <Route element={<Events />} path='/events' />
+        <Route element={<Servizi />} path='/servizi' />
         <Route element={<Contact />} path='/contact' />
-        <Route element={<Locations />} path='/location' />
         <Route element={<Room />} path='/rooms' />
-        <Route element={<Team />} path='/team' />
-        <Route element={<Activities />} path='/activities' />
+        <Route element={<Attrazione />} path='/attrazione' />
 
       </Routes>
       {/* <IndexNews /> */}

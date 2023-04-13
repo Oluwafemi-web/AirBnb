@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import sanityClient from '../client'
 import EventItems from "./EventItems";
 import { Link } from "react-router-dom";
-export default function Events() {
+export default function Servizi() {
 
      async function filterGalleryOnLoad() {
           // Wait for DOM to load completely

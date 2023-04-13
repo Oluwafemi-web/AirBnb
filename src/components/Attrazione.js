@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import sanityClient from '../client'
 import { Link } from "react-router-dom";
-import TeamList from "./Index/TeamList";
-export default function Team() {
+export default function Attrazione() {
      const [teamList, setTeamList] = useState(null)
      const [teamText, setText] = useState(null)
      useEffect(() => {
