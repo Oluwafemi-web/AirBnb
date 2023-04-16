@@ -1,6 +1,7 @@
 import NavLinks from "./NavLinks";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { FaFacebookF, FaInstagram, FaGooglePlusG, FaTwitter, FaPinterestP } from "react-icons/fa";
 import './css/NavBar.css'
 import './css/meanmenu.css'
@@ -104,22 +105,19 @@ export default function NavBar() {
                                    <ul style={{ display: clicked ? 'block' : 'none' }}>
 
                                         <li>
-                                             <Link to="/" exact="true">HOME</Link>
+                                             <NavLink to="/" exact="true">HOME</NavLink>
                                         </li>
                                         <li>
-                                             <Link to="/rooms">ROOMS</Link>
+                                             <NavLink to="/rooms">ROOMS</NavLink>
                                         </li>
                                         <li>
-                                             <Link to="/location">LOCATION</Link>
+                                             <NavLink to="/events">SERVIZI</NavLink>
                                         </li>
                                         <li>
-                                             <Link to="/event">EVENT</Link>
+                                             <NavLink to="/attrazione">ATTRAZIONE</NavLink>
                                         </li>
                                         <li>
-                                             <Link to="/team">TEAM</Link>
-                                        </li>
-                                        <li className="mean-last">
-                                             <Link to="/contact">CONTACT</Link>
+                                             <NavLink to="/contact">CONTACT</NavLink>
                                         </li>
                                    </ul>
                               </nav>
@@ -131,30 +129,19 @@ export default function NavBar() {
                                         <nav id="dropdown" style={{ display: "none" }}>
                                              <ul>
                                                   <li>
-                                                       <a href="index.html">HOME</a>
+                                                       <NavLink to="/" exact="true">HOME</NavLink>
                                                   </li>
                                                   <li>
-                                                       <a href="room-grid.html">ROOMS</a>
-                                                       <ul className="submenu">
-                                                            <li>
-                                                                 <a href="room-list.html">ROOM LIST</a>
-                                                            </li>
-                                                            <li>
-                                                                 <a href="room-details.html">ROOM DETAILS</a>
-                                                            </li>
-                                                       </ul>
+                                                       <NavLink to="/rooms">ROOMS</NavLink>
                                                   </li>
                                                   <li>
-                                                       <a href="location.html">LOCATION</a>
+                                                       <NavLink to="/events">SERVIZI</NavLink>
                                                   </li>
                                                   <li>
-                                                       <a href="event.html">EVENT</a>
+                                                       <NavLink to="/attrazione">ATTRAZIONE</NavLink>
                                                   </li>
                                                   <li>
-                                                       <a href="team.html">TEAM</a>
-                                                  </li>
-                                                  <li>
-                                                       <a href="contact.html">CONTACT</a>
+                                                       <NavLink to="/contact">CONTACT</NavLink>
                                                   </li>
                                              </ul>
                                         </nav>

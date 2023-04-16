@@ -7,6 +7,7 @@ import Servizi from './components/Servizi';
 import Home from './components/Home'
 import Room from './components/Rooms';
 import Attrazione from './components/Attrazione';
+import SingleAttrazione from './components/SingleAttrazione';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer'
 
@@ -44,7 +45,9 @@ function App() {
         <Route element={<Servizi />} path='/servizi' />
         <Route element={<Contact />} path='/contact' />
         <Route element={<Room />} path='/rooms' />
+        <Route element={<SingleAttrazione />} path='/attrazione/:slug' />
         <Route element={<Attrazione />} path='/attrazione' />
+
 
       </Routes>
       {/* <IndexNews /> */}

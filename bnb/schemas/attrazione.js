@@ -16,6 +16,15 @@ export default defineType({
       type: 'text',
     }),
     defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'roomname',
+        maxLength: 96,
+      },
+    }),
+    defineField({
       name: 'image',
       title: 'Image',
       type: 'image',

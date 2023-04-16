@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import sanityClient from '../client'
-import AttrazioneList from "./Index/AttrazioneList";
+import AttrazioneList from "./AttrazioneList";
 import { Link } from "react-router-dom";
 export default function Attrazione() {
      const [attrazioneList, setAttrazioneList] = useState(null)
@@ -26,6 +26,7 @@ export default function Attrazione() {
           sanityClient.fetch(`*[_type == "attrazione"] {
                roomname,
                description,
+               slug,
                image{
                     asset->{
                          _id,
@@ -54,7 +55,7 @@ export default function Attrazione() {
                                                   <li>
                                                        <Link to="/">Home</Link>
                                                   </li>
-                                                  <li>Our Staff</li>
+                                                  <li>Attrazione</li>
                                              </ul>
                                         </div>
                                    </div>
@@ -82,7 +83,27 @@ export default function Attrazione() {
                     <div className="container">
                          <div className="row">
                               <div className="col-12">
-                                   {attrazioneList && attrazioneList.map((item, index) => <AttrazioneList key={index} img={item.image.asset.url} title={item.roomname} description={item.description} />)}
+                                   {attrazioneList && attrazioneList.map((item, index) => <div className="room-list" key={index}>
+                                        <div className="row">
+                                             <div className="col-lg-5 col-md-6">
+                                                  <Link to={"/attrazione/" + item.slug.current} key={item.slug.current}>
+
+
+                                                       <img src={item.image.asset.url} alt="" />
+                                                  </Link>
+                                             </div>
+                                             <div className="col-lg-7 col-md-6 align-self-center">
+                                                  <div className="room-list-text">
+                                                       <h3>
+                                                            <a href="room-details.html">{item.roomname}</a>
+                                                       </h3>
+                                                       <p>
+                                                            {item.description}
+                                                       </p>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </div>)}
                               </div>
                          </div>
                     </div>
