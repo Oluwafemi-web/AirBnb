@@ -15,6 +15,7 @@ export default defineType({
       title: 'Description',
       type: 'text',
     }),
+
     defineField({
       name: 'slug',
       title: 'Slug',
@@ -31,7 +32,20 @@ export default defineType({
       options: {
         hotspot: true,
       },
-    })
+    }),
+    defineField({
+      name: 'innerdescription',
+      title: 'Inner Page Description',
+      type: 'text',
+    }),
+    defineField({
+      name: 'bannerimage',
+      title: 'Inner page Banner Image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    }),
   ],
   preview: {
     select: {

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import sanityClient from "../client"
+import IndexRoomItems from "./Index/IndexRoomItems"
+
 import imageUrlBuilder from "@sanity/image-url"
 
 const builder = imageUrlBuilder(sanityClient)
@@ -10,12 +12,21 @@ function urlFor(source) {
 export default function SingleAttrazione() {
      const { slug } = useParams();
      const [singleAttrazione, setSingleAttrazione] = useState(null);
+     const [roomData, setRoom] = useState(null)
+
      useEffect(() => {
           sanityClient.fetch(`*[slug.current == "${slug}"]{
                roomname,
-               description,
+               subtitle,
+               innerdescription,
                slug,
                image{
+                    asset->{
+                         _id,
+                         url
+                    }
+               },
+               bannerimage{
                     asset->{
                          _id,
                          url
@@ -23,16 +34,36 @@ export default function SingleAttrazione() {
                }
           }`).then((data) => setSingleAttrazione(data[0])).catch(console.error);
      }, [slug])
+
+     //room query
+
+
+     useEffect(() => {
+          sanityClient.fetch(`*[_type == "indexroom"] {
+          title,
+          description,
+          mainImage{
+               asset->{
+                    _id,
+                    url
+               },
+               alt
+
+          }
+     }`).then(data => setRoom(data))
+               .catch(console.error)
+     }, [])
+
      if (!singleAttrazione) return <div>Loading...</div>
      return (
           <>
-               <section className="breadcrumb-area overlay-dark-2 bg-3">
+               <section className="breadcrumb-area overlay-dark-2 bg-3" style={{ backgroundImage: `url(${singleAttrazione.bannerimage.asset.url})` }}>
                     <div className="container">
                          <div className="row">
                               <div className="col-12">
                                    <div className="breadcrumb-text text-center">
                                         <h2>{singleAttrazione.roomname}</h2>
-                                        <p>A quality room of Oestin with sea or mountain view</p>
+                                        <p>{singleAttrazione.subtitle}</p>
                                         <div className="breadcrumb-bar">
                                              <ul className="breadcrumb">
                                                   <li>
@@ -57,7 +88,7 @@ export default function SingleAttrazione() {
                                                   <div
                                                        className="slick-track"
                                                        role="listbox"
-                                                       style={{ opacity: 1, width: 4350 }}
+                                                       style={{ opacity: 1 }}
                                                   >
                                                        <div
                                                             className="slider-image slick-slide"
@@ -87,7 +118,7 @@ export default function SingleAttrazione() {
                                    <div className="room-details-text">
                                         <h3 className="room-details-title">description of room</h3>
                                         <p>
-                                             {singleAttrazione.description}
+                                             {singleAttrazione.innerdescription}
                                         </p>
                                    </div>
                                    <div className="room-facilities">
@@ -158,108 +189,10 @@ export default function SingleAttrazione() {
                               </div>
                          </div>
                          <div className="container-fluid overflow-hidden">
-                              <div className="single-room small">
-                                   <img src="img/room/1.jpg" alt="" />
-                                   <h3>Royal Suit</h3>
-                                   <div className="room-hover text-center">
-                                        <div className="hover-text">
-                                             <h3>
-                                                  <a href="room-details.html">Royal Suit</a>
-                                             </h3>
-                                             <p>
-                                                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                                                  enim ad minim veniam,
-                                             </p>
-                                             <div className="room-btn">
-                                                  <a href="room-details.html" className="default-btn">
-                                                       DETAILS
-                                                  </a>
-                                             </div>
-                                        </div>
-                                        <div className="p-amount">
-                                             <span>$220</span>
-                                             <span className="count">Per Night</span>
-                                        </div>
-                                   </div>
-                              </div>
-                              <div className="single-room large">
-                                   <img src="img/room/2.jpg" alt="" />
-                                   <h3>Deluxe Suit</h3>
-                                   <div className="room-hover text-center">
-                                        <div className="hover-text">
-                                             <h3>
-                                                  <a href="room-details.html">Deluxe Suit</a>
-                                             </h3>
-                                             <p>
-                                                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                                                  enim ad minim veniam,
-                                             </p>
-                                             <div className="room-btn">
-                                                  <a href="room-details.html" className="default-btn">
-                                                       DETAILS
-                                                  </a>
-                                             </div>
-                                        </div>
-                                        <div className="p-amount">
-                                             <span>$150</span>
-                                             <span className="count">Per Night</span>
-                                        </div>
-                                   </div>
-                              </div>
-                              <div className="single-room small">
-                                   <img src="img/room/3.jpg" alt="" />
-                                   <h3>Single Room</h3>
-                                   <div className="room-hover text-center">
-                                        <div className="hover-text">
-                                             <h3>
-                                                  <a href="room-details.html">Single Room</a>
-                                             </h3>
-                                             <p>
-                                                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                                                  enim ad minim veniam,
-                                             </p>
-                                             <div className="room-btn">
-                                                  <a href="room-details.html" className="default-btn">
-                                                       DETAILS
-                                                  </a>
-                                             </div>
-                                        </div>
-                                        <div className="p-amount">
-                                             <span>$120</span>
-                                             <span className="count">Per Night</span>
-                                        </div>
-                                   </div>
-                              </div>
-                              <div className="single-room medium">
-                                   <img src="img/room/4.jpg" alt="" />
-                                   <h3>Double Room</h3>
-                                   <div className="room-hover text-center">
-                                        <div className="hover-text">
-                                             <h3>
-                                                  <a href="room-details.html">Double Room</a>
-                                             </h3>
-                                             <p>
-                                                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                                                  enim ad minim veniam,
-                                             </p>
-                                             <div className="room-btn">
-                                                  <a href="room-details.html" className="default-btn">
-                                                       DETAILS
-                                                  </a>
-                                             </div>
-                                        </div>
-                                        <div className="p-amount">
-                                             <span>$100</span>
-                                             <span className="count">Per Night</span>
-                                        </div>
-                                   </div>
-                              </div>
+                              {roomData && roomData.map((room, index) => <IndexRoomItems key={index} title={room.title} url={room.mainImage.asset.url} alt={room.mainImage.alt} description={room.description} />)}
                          </div>
                     </div>
+                    <div style={{ margin: '20px' }}></div>
                </section>
           </>
      )
