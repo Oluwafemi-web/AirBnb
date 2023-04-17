@@ -135,7 +135,7 @@ export default function NavBar() {
                                                        <NavLink to="/rooms">ROOMS</NavLink>
                                                   </li>
                                                   <li>
-                                                       <NavLink to="/events">SERVIZI</NavLink>
+                                                       <NavLink to="/servizi">SERVIZI</NavLink>
                                                   </li>
                                                   <li>
                                                        <NavLink to="/attrazione">ATTRAZIONE</NavLink>
