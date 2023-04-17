@@ -98,7 +98,7 @@ export default function SingleAttrazione() {
                                                             role="option"
                                                             aria-describedby="slick-slide00"
                                                             style={{
-                                                                 width: 870,
+                                                                 width: '100%',
                                                                  position: "relative",
                                                                  left: 0,
                                                                  top: 0,
