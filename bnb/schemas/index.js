@@ -14,5 +14,6 @@ import footer from './footer'
 import events from './events'
 import gallery from './gallery'
 import contacts from './contacts'
+import header from './header'
 
-export const schemaTypes = [slider, indexabout, indexroomdescription, indexroom, gallery, roomdescription, room, attrazione, attrazionedescription, service, pricing, eventdescription, events, contacts, footer, blockContent]
+export const schemaTypes = [header, slider, indexabout, indexroomdescription, indexroom, gallery, roomdescription, room, attrazione, attrazionedescription, service, pricing, eventdescription, events, contacts, footer, blockContent]

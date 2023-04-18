@@ -13,18 +13,7 @@ export default function NavBar() {
      const [isScrolled, setIsScrolled] = useState(false);
      const [clicked, setClicked] = useState(false)
      const [header, updateHeader] = useState(null)
-     useEffect(() => {
-          sanityClient.fetch(`*[_type == "header"] {
-               logo,
-               contact,
-               facebook,
-               instagram,
-               twitter,
-               pinterest,
 
-          }`).then(data => updateHeader(data))
-               .catch(console.error)
-     }, [])
 
      useEffect(() => {
           function handleScroll() {
@@ -45,50 +34,69 @@ export default function NavBar() {
      const clickHandler = () => {
           setClicked(prev => !prev)
      }
+     useEffect(() => {
+          sanityClient.fetch(`*[_type == "header"] {
+               logo{
+                    asset->{
+                         _id,
+                         url
+                    }
+               },
+               contact,
+               facebook,
+               instagram,
+               twitter,
+               pinterest,
 
+          }`).then(data => updateHeader(data))
+               .catch(console.error)
+     }, [])
 
 
      return (
           <header className={`header-area fixed header-sticky ${isScrolled ? 'sticky' : ''}`}>
                <div className="container">
-                    <div className="row">
-                         <div className="col-xl-5 col-lg-4 col-sm-4 col-12">
-                              <div className="logo">
-                                   <a href="/">
-                                        <img src={header.logo} alt="Oestin" />
-                                   </a>
-                              </div>
-                         </div>
-                         <div className="col-xl-7 col-lg-8 col-sm-8 col-12">
-                              <div className="header-top fix">
-                                   <div className="header-contact">
-                                        <span className="text-theme">Contact:</span>
-                                        <span>{header.contact}</span>
-                                   </div>
-                                   <div className="header-links">
-                                        <a href={header.facebook}>
-                                             <FaFacebookF />
-                                        </a>
-                                        <a href={header.twitter}>
-                                             <FaTwitter />
-                                        </a>
-                                        <a href={header.instagram}>
-                                             <FaInstagram />
-                                        </a>
-                                        <a href={header.pinterest}>
-                                             <FaPinterestP />
+                    {header && header.map((item, index) =>
+                         <div className="row" key={index}>
+                              <div className="col-xl-5 col-lg-4 col-sm-4 col-12">
+                                   <div className="logo">
+                                        <a href="/">
+                                             <img src={item.logo.asset.url} alt="Oestin" />
                                         </a>
                                    </div>
                               </div>
-                              {/* Mainmenu Start */}
-                              <div className="main-menu d-none d-lg-block">
-                                   <nav>
-                                        <NavLinks />
-                                   </nav>
+                              <div className="col-xl-7 col-lg-8 col-sm-8 col-12">
+                                   <div className="header-top fix">
+                                        <div className="header-contact">
+                                             <span className="text-theme">Contact:</span>
+                                             <span>{item.contact}</span>
+                                        </div>
+                                        <div className="header-links">
+                                             <a href={item.facebook}>
+                                                  <FaFacebookF />
+                                             </a>
+                                             <a href={item.twitter}>
+                                                  <FaTwitter />
+                                             </a>
+                                             <a href={item.instagram}>
+                                                  <FaInstagram />
+                                             </a>
+                                             <a href={item.pinterest}>
+                                                  <FaPinterestP />
+                                             </a>
+                                        </div>
+                                   </div>
+                                   {/* Mainmenu Start */}
+                                   <div className="main-menu d-none d-lg-block">
+                                        <nav>
+                                             <NavLinks />
+                                        </nav>
+                                   </div>
+                                   {/* Mainmenu End */}
                               </div>
-                              {/* Mainmenu End */}
                          </div>
-                    </div>
+                    )}
+
                </div>
                {/* Mobile Menu Area start */}
                <div className="mobile-menu-area">
