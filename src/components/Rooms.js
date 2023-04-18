@@ -8,6 +8,8 @@ export default function Room() {
      useEffect(() => {
           sanityClient.fetch(`*[_type == "roomdescription"] {
                heading,
+               ptext,
+               ctext,
                subheading,
                title,
                description,
@@ -54,9 +56,9 @@ export default function Room() {
                                         <div className="breadcrumb-bar">
                                              <ul className="breadcrumb">
                                                   <li>
-                                                       <Link to="/">Home</Link>
+                                                       <Link to="/">{text.ptext}</Link>
                                                   </li>
-                                                  <li>Room - grid view</li>
+                                                  <li>{text.ctext}</li>
                                              </ul>
                                         </div>
                                    </div>

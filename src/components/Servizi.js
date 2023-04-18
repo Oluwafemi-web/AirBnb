@@ -60,6 +60,8 @@ export default function Servizi() {
      useEffect(() => {
           sanityClient.fetch(`*[_type == "eventdescription"] {
                heading,
+               ptext,
+               ctext,
                subheading,
                title,
                description,
@@ -105,9 +107,9 @@ export default function Servizi() {
                                         <div className="breadcrumb-bar">
                                              <ul className="breadcrumb">
                                                   <li>
-                                                       <Link to="/">Home</Link>
+                                                       <Link to="/">{text.ptext}</Link>
                                                   </li>
-                                                  <li>Events</li>
+                                                  <li>{text.ctext}</li>
                                              </ul>
                                         </div>
                                    </div>

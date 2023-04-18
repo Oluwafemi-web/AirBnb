@@ -11,6 +11,8 @@ export default function Contact() {
           sanityClient.fetch(`*[_type == "contacts"] {
                heading,
                subheading,
+               ptext,
+               ctext,
                phone,
                email,
                address,
@@ -42,9 +44,9 @@ export default function Contact() {
                                         <div className="breadcrumb-bar">
                                              <ul className="breadcrumb">
                                                   <li>
-                                                       <Link to="/">Home</Link>
+                                                       <Link to="/">{details.ptext}</Link>
                                                   </li>
-                                                  <li>Contact Us</li>
+                                                  <li>{details.ctext}</li>
                                              </ul>
                                         </div>
                                    </div>

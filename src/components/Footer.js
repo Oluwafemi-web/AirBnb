@@ -71,39 +71,7 @@ export default function IndexFooter(props) {
                                         </div>
                                    </div>
                               </div>
-                              {/* <div className="col-xl-2 col-lg-3 col-md-6 col-sm-6 col-12 mb-60">
-                              <div className="single-footer-widget">
-                                   <h3>quick links</h3>
-                                   <ul className="footer-list">
-                                        <li>
-                                             <a href="index.html">Home</a>
-                                        </li>
-                                        <li>
-                                             <a href="team.html">Stuffs</a>
-                                        </li>
-                                        <li>
-                                             <a href="room-grid.html">Suits &amp; Rooms</a>
-                                        </li>
-                                        <li>
-                                             <a href="event.html">Event</a>
-                                        </li>
-                                        <li>
-                                             <a href="location.html">Location</a>
-                                        </li>
-                                        <li>
-                                             <a href="contact.html">Contact</a>
-                                        </li>
-                                   </ul>
-                              </div>
-                         </div>
-                         <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-60">
-                              <div className="single-footer-widget">
-                                   <h3>collections</h3>
-                                   <div className="instagram-image">
-                                        {image && image.map((item, index) => <FooterImage key={index} image={item.mainImage.asset.url} />)}
-                                   </div>
-                              </div>
-                         </div> */}
+
                          </div>
                     </div>
                </div>

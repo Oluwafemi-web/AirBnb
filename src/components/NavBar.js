@@ -1,12 +1,10 @@
 import NavLinks from "./NavLinks";
 import { useState, useEffect } from "react";
-// import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import { FaFacebookF, FaInstagram, FaGooglePlusG, FaTwitter, FaPinterestP } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaTwitter, FaPinterestP } from "react-icons/fa";
 import './css/NavBar.css'
 import './css/meanmenu.css'
-
-import logo from './logo.webp'
+import sanityClient from "../client";
 
 
 
@@ -14,6 +12,19 @@ import logo from './logo.webp'
 export default function NavBar() {
      const [isScrolled, setIsScrolled] = useState(false);
      const [clicked, setClicked] = useState(false)
+     const [header, updateHeader] = useState(null)
+     useEffect(() => {
+          sanityClient.fetch(`*[_type == "header"] {
+               logo,
+               contact,
+               facebook,
+               instagram,
+               twitter,
+               pinterest,
+
+          }`).then(data => updateHeader(data))
+               .catch(console.error)
+     }, [])
 
      useEffect(() => {
           function handleScroll() {
@@ -44,7 +55,7 @@ export default function NavBar() {
                          <div className="col-xl-5 col-lg-4 col-sm-4 col-12">
                               <div className="logo">
                                    <a href="/">
-                                        <img src={logo} alt="Oestin" />
+                                        <img src={header.logo} alt="Oestin" />
                                    </a>
                               </div>
                          </div>
@@ -52,22 +63,19 @@ export default function NavBar() {
                               <div className="header-top fix">
                                    <div className="header-contact">
                                         <span className="text-theme">Contact:</span>
-                                        <span>+393397263322</span>
+                                        <span>{header.contact}</span>
                                    </div>
                                    <div className="header-links">
-                                        <a href="https://www.facebook.com/">
+                                        <a href={header.facebook}>
                                              <FaFacebookF />
                                         </a>
-                                        <a href="https://twitter.com/">
+                                        <a href={header.twitter}>
                                              <FaTwitter />
                                         </a>
-                                        <a href="https://plus.google.com/">
-                                             <FaGooglePlusG />
-                                        </a>
-                                        <a href="https://www.instagram.com/">
+                                        <a href={header.instagram}>
                                              <FaInstagram />
                                         </a>
-                                        <a href="https://www.pinterest.com/">
+                                        <a href={header.pinterest}>
                                              <FaPinterestP />
                                         </a>
                                    </div>

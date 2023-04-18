@@ -16,6 +16,16 @@ export default defineType({
                type: 'string',
           }),
           defineField({
+               name: 'ptext',
+               title: 'Previous page navigation',
+               type: 'string',
+          }),
+          defineField({
+               name: 'ctext',
+               title: 'Current page navigation',
+               type: 'string',
+          }),
+          defineField({
                name: 'mainImage',
                title: 'Main image',
                type: 'image',

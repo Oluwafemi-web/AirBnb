@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import { useParams } from "react-router-dom"
 import sanityClient from "../client"
 import IndexRoomItems from "./Index/IndexRoomItems"
@@ -18,6 +19,8 @@ export default function SingleAttrazione() {
           sanityClient.fetch(`*[slug.current == "${slug}"]{
                roomname,
                subtitle,
+               ptext,
+               ctext,
                innerdescription,
                slug,
                image{
@@ -67,9 +70,10 @@ export default function SingleAttrazione() {
                                         <div className="breadcrumb-bar">
                                              <ul className="breadcrumb">
                                                   <li>
-                                                       <a href="index.html">Home</a>
+                                                       <Link to="/">{singleAttrazione.ptext}</Link>
+
                                                   </li>
-                                                  <li>Room Details</li>
+                                                  <li>{singleAttrazione.ctext}</li>
                                              </ul>
                                         </div>
                                    </div>

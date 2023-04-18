@@ -1,53 +1,23 @@
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
-     name: 'contacts',
-     title: 'Contacts',
+     name: 'header',
+     title: 'Header',
      type: 'document',
      fields: [
           defineField({
-               name: 'heading',
-               title: 'Heading',
-               type: 'string',
-          }),
-          defineField({
-               name: 'subheading',
-               title: 'Sub-Heading',
-               type: 'string',
-          }),
-          defineField({
-               name: 'ptext',
-               title: 'Previous page navigation',
-               type: 'string',
-          }),
-          defineField({
-               name: 'ctext',
-               title: 'Current page navigation',
-               type: 'string',
-          }),
-          defineField({
-               name: 'mainImage',
-               title: 'Main image',
+               name: 'logo',
+               title: 'Logo',
                type: 'image',
                options: {
                     hotspot: true,
                },
           }),
           defineField({
-               name: 'phone',
-               title: 'Phone Number',
+               name: 'contact',
+               title: 'Contact',
                type: 'string',
-          }),
-          defineField({
-               name: 'email',
-               title: 'Email',
-               type: 'string',
-
-          }),
-          defineField({
-               name: 'address',
-               title: 'Address',
-               type: 'text',
+               // to: { type: 'author' },
           }),
           defineField({
                name: 'facebook',
@@ -68,13 +38,13 @@ export default defineType({
                name: 'pinterest',
                title: 'Pinterest link',
                type: 'string',
-          }),
-
+          })
      ],
 
      preview: {
           select: {
-               title: 'heading',
+               title: 'title',
+               author: 'author.name',
                media: 'mainImage',
           },
           prepare(selection) {

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import sanityClient from '../client'
-import AttrazioneList from "./AttrazioneList";
 import { Link } from "react-router-dom";
 export default function Attrazione() {
      const [attrazioneList, setAttrazioneList] = useState(null)
@@ -10,6 +9,8 @@ export default function Attrazione() {
                heading,
                subheading,
                title,
+               ptext,
+               ctext,
                description,
                mainImage{
                     asset->{
@@ -53,9 +54,9 @@ export default function Attrazione() {
                                         <div className="breadcrumb-bar">
                                              <ul className="breadcrumb">
                                                   <li>
-                                                       <Link to="/">Home</Link>
+                                                       <Link to="/">{text.ptext}</Link>
                                                   </li>
-                                                  <li>Attrazione</li>
+                                                  <li>{text.ctext}</li>
                                              </ul>
                                         </div>
                                    </div>
