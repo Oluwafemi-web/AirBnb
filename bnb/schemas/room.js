@@ -20,6 +20,15 @@ export default defineType({
                // },
           }),
           defineField({
+               name: 'slug',
+               title: 'Slug',
+               type: 'slug',
+               options: {
+                    source: 'roomname',
+                    maxLength: 96,
+               },
+          }),
+          defineField({
                name: 'description',
                title: 'Description',
                type: 'text',
@@ -28,6 +37,19 @@ export default defineType({
           defineField({
                name: 'mainImage',
                title: 'Main image',
+               type: 'image',
+               options: {
+                    hotspot: true,
+               },
+          }),
+          defineField({
+               name: 'innerdescription',
+               title: 'Inner Page Description',
+               type: 'text',
+          }),
+          defineField({
+               name: 'bannerimage',
+               title: 'Inner page Banner Image',
                type: 'image',
                options: {
                     hotspot: true,

@@ -10,7 +10,7 @@ import Attrazione from './components/Attrazione';
 import SingleAttrazione from './components/SingleAttrazione';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer'
-
+import SingleRoom from './components/SingleRoom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './components/css/default.css'
 import './components/css/style.css'
@@ -46,6 +46,7 @@ function App() {
         <Route element={<Contact />} path='/contact' />
         <Route element={<Room />} path='/rooms' />
         <Route element={<SingleAttrazione />} path='/attrazione/:slug' />
+        <Route element={<SingleRoom />} path='/rooms/:slug' />
         <Route element={<Attrazione />} path='/attrazione' />
 
 
