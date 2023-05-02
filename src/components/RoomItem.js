@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 export default function RoomItem(props) {
      return (
           <div className="col-lg-6 col-sm-6 col-12">
@@ -14,7 +15,8 @@ export default function RoomItem(props) {
                               </div> */}
                               <p>{props.description}</p>
                               <div className="room-btn">
-                                   <a href="room-details.html" className="default-btn">DETAILS</a>
+                                   <Link to={"/rooms/" + props.slugs} key={props.slugs}
+                                        className="default-btn">DETAILS</Link>
                               </div>
 
                          </div>

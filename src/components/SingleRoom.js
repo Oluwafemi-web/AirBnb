@@ -23,7 +23,7 @@ export default function SingleRoom() {
                ctext,
                innerdescription,
                slug,
-               image{
+               mainImage{
                     asset->{
                          _id,
                          url
@@ -109,7 +109,7 @@ export default function SingleRoom() {
                                                                  transition: "opacity 500ms ease 0s"
                                                             }}
                                                        >
-                                                            <img src={singleRoom.image.asset.url} alt="" />
+                                                            <img src={singleRoom.mainImage.asset.url} alt="" />
                                                             <div className="cost">
                                                                  <h2>$ 350</h2>
                                                                  <span>Per Night</span>

@@ -29,6 +29,7 @@ export default function Room() {
           sanityClient.fetch(`*[_type == "room"] {
                title,
                price,
+               slug,
                description,
                mainImage{
                     asset->{
@@ -83,7 +84,7 @@ export default function Room() {
 
                     <div className="container">
                          <div className="row">
-                              {roomData && roomData.map((room, index) => <RoomItem key={index} title={room.title} url={room.mainImage.asset.url} alt={room.mainImage.alt} price={room.price} description={room.description} />)}
+                              {roomData && roomData.map((room, index) => <RoomItem key={index} title={room.title} url={room.mainImage.asset.url} alt={room.mainImage.alt} price={room.price} description={room.description} slugs={room.slug.current} />)}
 
                          </div>
                     </div>
