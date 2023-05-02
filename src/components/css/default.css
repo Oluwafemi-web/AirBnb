@@ -1634,7 +1634,7 @@ textarea:focus {
 
 .row {
      --bs-gutter-x: 30px;
-     /* width: 100%; */
+     width: 100%;
 }
 
 .col-lg-3 {
