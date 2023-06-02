@@ -19,7 +19,7 @@ export default function IndexGallery() {
 
     // Get all the filter buttons
     const galleryFilter = document.querySelector(".gallery-filter");
-    console.log(galleryFilter);
+
     const filterButtons = galleryFilter.querySelectorAll("button");
 
     // Get all the gallery items
