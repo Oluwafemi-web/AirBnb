@@ -1,76 +1,70 @@
 // import GalleryItems from "./GalleryItems"
-import sanityClient from "../../client"
-import link from '../img/link.webp'
-import linkhover from '../img/link-hover.webp'
-import search from '../img/search.webp'
-import searchhover from '../img/search-hover.webp'
-import { useState, useEffect } from "react"
-import {
-
-     MDBCol,
-     MDBRow,
-} from 'mdb-react-ui-kit';
+import sanityClient from "../../client";
+import link from "../img/link.webp";
+import linkhover from "../img/link-hover.webp";
+import search from "../img/search.webp";
+import searchhover from "../img/search-hover.webp";
+import { useState, useEffect } from "react";
+import { MDBCol, MDBRow } from "mdb-react-ui-kit";
 export default function IndexGallery() {
+  async function filterGalleryOnLoad() {
+    // Wait for DOM to load completely
+    await new Promise((resolve) => {
+      if (document.readyState === "loading") {
+        document.addEventListener("load", resolve);
+      } else {
+        resolve();
+      }
+    });
 
+    // Get all the filter buttons
+    const galleryFilter = document.querySelector(".gallery-filter");
+    console.log(galleryFilter);
+    const filterButtons = galleryFilter.querySelectorAll("button");
 
-     async function filterGalleryOnLoad() {
-          // Wait for DOM to load completely
-          await new Promise(resolve => {
-               if (document.readyState === 'loading') {
-                    document.addEventListener('load', resolve);
-               } else {
-                    resolve();
-               }
-          });
+    // Get all the gallery items
+    const galleryItems = document.querySelectorAll(".item-gallery");
 
-          // Get all the filter buttons
-          const galleryFilter = document.querySelector(".gallery-filter");
-          console.log(galleryFilter)
-          const filterButtons = galleryFilter.querySelectorAll("button");
+    // Add click event listener to each filter button
+    filterButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        // Remove "active" class from all buttons
+        filterButtons.forEach(function (btn) {
+          btn.classList.remove("active");
+        });
 
-          // Get all the gallery items
-          const galleryItems = document.querySelectorAll(".item-gallery");
+        // Add "active" class to clicked button
+        this.classList.add("active");
 
-          // Add click event listener to each filter button
-          filterButtons.forEach(function (button) {
-               button.addEventListener("click", function () {
-                    // Remove "active" class from all buttons
-                    filterButtons.forEach(function (btn) {
-                         btn.classList.remove("active");
-                    });
+        // Get the filter value from the button
+        const filterValue = this.getAttribute("data-filter");
 
-                    // Add "active" class to clicked button
-                    this.classList.add("active");
+        // Loop through all gallery items
+        galleryItems.forEach(function (item) {
+          // Check if the item has the same class as the filter value or if the filter value is "*"
+          if (item.classList.contains(filterValue) || filterValue === "*") {
+            // Show the item
+            item.parentElement.style.position = "relative";
+            item.style.display = "block";
+          } else {
+            // Hide the item
+            item.parentElement.style.position = "absolute";
+            item.style.display = "none";
+          }
+        });
+      });
+    });
+  }
 
-                    // Get the filter value from the button
-                    const filterValue = this.getAttribute("data-filter");
+  // Call the async function to run the code when the DOM is completely loaded
+  filterGalleryOnLoad();
 
-                    // Loop through all gallery items
-                    galleryItems.forEach(function (item) {
-                         // Check if the item has the same class as the filter value or if the filter value is "*"
-                         if (item.classList.contains(filterValue) || filterValue === "*") {
-                              // Show the item
-                              item.parentElement.style.position = "relative";
-                              item.style.display = "block";
-                         } else {
-                              // Hide the item
-                              item.parentElement.style.position = "absolute";
-                              item.style.display = "none";
-                         }
-                    });
-               });
-          });
-     }
+  const [galleryData, setGallery] = useState(null);
 
-     // Call the async function to run the code when the DOM is completely loaded
-     filterGalleryOnLoad();
-
-
-
-     const [galleryData, setGallery] = useState(null)
-
-     useEffect(() => {
-          sanityClient.fetch(`*[_type == "gallery"] {
+  useEffect(() => {
+    sanityClient
+      .fetch(
+        `*[_type == "gallery"] {
                title,
                description,
                 Image1{
@@ -121,223 +115,217 @@ export default function IndexGallery() {
                     alt
 
                }
-          }`).then(data => setGallery(data))
-               .catch(console.error)
-     }, [])
-     return (
-          galleryData && galleryData.map((item, index) => <section className="gallery-area pt-90 pt-bm-90" key={index}>
-               <div className="container">
-                    <div className="row">
-                         <div className="col-md-8 mx-auto">
-                              <div className="section-title text-center">
-                                   <h3>{item.title}</h3>
-                                   <p>
-                                        {item.description}
-                                   </p>
-                              </div>
-                         </div>
+          }`
+      )
+      .then((data) => setGallery(data))
+      .catch(console.error);
+  }, []);
+  return (
+    galleryData &&
+    galleryData.map((item, index) => (
+      <section className="gallery-area pt-90 pt-bm-90" key={index}>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-8 mx-auto">
+              <div className="section-title text-center">
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="gallery-container">
+          <div className="gallery-filter">
+            <button data-filter="*" className="active">
+              All
+            </button>
+            <button data-filter="appartamenti">Appartamenti</button>
+            <button data-filter="restaurent">Home Restaurant</button>
+            <button data-filter="attrazioni">Attrazioni</button>
+          </div>
+          <div
+            className="gallery gallery-masonry"
+            style={{ position: "relative" }}
+          >
+            <MDBRow>
+              <MDBCol lg={3} md={10} className="mb-4 mb-lg-0">
+                <div className="item-gallery spa">
+                  <img
+                    src={item.Image1.asset.url}
+                    className="w-100 shadow-1-strong mb-4 thumb"
+                    alt="Boat on Calm Water"
+                  />
+
+                  <div className="hover-gallery">
+                    <div className="gallery-icon">
+                      <a href="/">
+                        <span className="p-img">
+                          <img src={link} alt="" />
+                        </span>
+                        <span className="s-img">
+                          <img src={linkhover} alt="" />
+                        </span>
+                      </a>
+                      <a className="image-popup" href={item.Image1.asset.url}>
+                        <span className="p-img">
+                          <img src={search} alt="" />
+                        </span>
+                        <span className="s-img">
+                          <img src={searchhover} alt="" />
+                        </span>
+                      </a>
                     </div>
-               </div>
-               <div className="gallery-container">
-                    <div className="gallery-filter">
-                         <button data-filter="*" className="active">
-                              All
-                         </button>
-                         <button data-filter="spa">Spa</button>
-                         <button data-filter="restaurent">Restaurent</button>
-                         <button data-filter="gym">Gym</button>
-                         <button data-filter="hotel">Hotel</button>
+                  </div>
+                </div>
+              </MDBCol>
+
+              <MDBCol lg={3} className="mb-4 mb-lg-0 ">
+                <div className="item-gallery restaurent hotel">
+                  <img
+                    src={item.Image2.asset.url}
+                    className="w-100 shadow-1-strong mb-4"
+                    alt="Mountains in the Clouds"
+                  />
+                  <div className="hover-gallery">
+                    <div className="gallery-icon">
+                      <a href="/">
+                        <span className="p-img">
+                          <img src={link} alt="" />
+                        </span>
+                        <span className="s-img">
+                          <img src={linkhover} alt="" />
+                        </span>
+                      </a>
+                      <a className="image-popup" href={item.Image2.asset.url}>
+                        <span className="p-img">
+                          <img src={search} alt="" />
+                        </span>
+                        <span className="s-img">
+                          <img src={searchhover} alt="" />
+                        </span>
+                      </a>
                     </div>
-                    <div
-                         className="gallery gallery-masonry"
-                         style={{ position: "relative" }}
-                    >
-                         <MDBRow>
-                              <MDBCol lg={3} md={10} className='mb-4 mb-lg-0'>
-                                   <div className="item-gallery spa">
-                                        <img
-                                             src={item.Image1.asset.url}
-                                             className='w-100 shadow-1-strong mb-4 thumb'
-                                             alt='Boat on Calm Water'
-                                        />
-
-                                        <div className="hover-gallery">
-                                             <div className="gallery-icon">
-                                                  <a href="/">
-                                                       <span className="p-img">
-                                                            <img src={link} alt="" />
-                                                       </span>
-                                                       <span className="s-img">
-                                                            <img src={linkhover} alt="" />
-                                                       </span>
-                                                  </a>
-                                                  <a className="image-popup" href={item.Image1.asset.url}>
-                                                       <span className="p-img">
-                                                            <img src={search} alt="" />
-                                                       </span>
-                                                       <span className="s-img">
-                                                            <img src={searchhover} alt="" />
-                                                       </span>
-                                                  </a>
-                                             </div>
-                                        </div>
-                                   </div>
-                              </MDBCol>
-
-                              <MDBCol lg={3} className='mb-4 mb-lg-0 '>
-                                   <div className="item-gallery restaurent hotel">
-
-                                        <img
-                                             src={item.Image2.asset.url}
-                                             className='w-100 shadow-1-strong mb-4'
-                                             alt='Mountains in the Clouds'
-                                        />
-                                        <div className="hover-gallery">
-                                             <div className="gallery-icon">
-                                                  <a href="/">
-                                                       <span className="p-img">
-                                                            <img src={link} alt="" />
-                                                       </span>
-                                                       <span className="s-img">
-                                                            <img src={linkhover} alt="" />
-                                                       </span>
-                                                  </a>
-                                                  <a className="image-popup" href={item.Image2.asset.url}>
-                                                       <span className="p-img">
-                                                            <img src={search} alt="" />
-                                                       </span>
-                                                       <span className="s-img">
-                                                            <img src={searchhover} alt="" />
-                                                       </span>
-                                                  </a>
-                                             </div>
-                                        </div>
-                                   </div>
-                                   <div className="item-gallery gym">
-                                        <img
-                                             src={item.Image5.asset.url}
-                                             className='w-100 shadow-1-strong mb-4'
-                                             alt='Boat on Calm Water'
-                                        />
-                                        <div className="hover-gallery">
-                                             <div className="gallery-icon">
-                                                  <a href="/">
-                                                       <span className="p-img">
-                                                            <img src={link} alt="" />
-                                                       </span>
-                                                       <span className="s-img">
-                                                            <img src={linkhover} alt="" />
-                                                       </span>
-                                                  </a>
-                                                  <a className="image-popup" href={item.Image5.asset.url}>
-                                                       <span className="p-img">
-                                                            <img src={search} alt="" />
-                                                       </span>
-                                                       <span className="s-img">
-                                                            <img src={searchhover} alt="" />
-                                                       </span>
-                                                  </a>
-                                             </div>
-                                        </div>
-                                   </div>
-                              </MDBCol>
-
-                              <MDBCol lg={3} className='mb-4 mb-lg-0'>
-                                   <div className="item-gallery spa hotel">
-
-                                        <img
-                                             src={item.Image3.asset.url}
-                                             className='w-100 shadow-1-strong mb-4'
-                                             alt='Mountains in the Clouds'
-                                        />
-                                        <div className="hover-gallery">
-                                             <div className="gallery-icon">
-                                                  <a href="/">
-                                                       <span className="p-img">
-                                                            <img src={link} alt="" />
-                                                       </span>
-                                                       <span className="s-img">
-                                                            <img src={linkhover} alt="" />
-                                                       </span>
-                                                  </a>
-                                                  <a className="image-popup" href={item.Image3.asset.url}>
-                                                       <span className="p-img">
-                                                            <img src={search} alt="" />
-                                                       </span>
-                                                       <span className="s-img">
-                                                            <img src={searchhover} alt="" />
-                                                       </span>
-                                                  </a>
-                                             </div>
-                                        </div>
-                                   </div>
-                                   <div className="item-gallery spa hotel gym">
-
-                                        <img
-                                             src={item.Image6.asset.url}
-                                             className='w-100 shadow-1-strong mb-4'
-                                             alt='Boat on Calm Water'
-                                        />
-                                        <div className="hover-gallery">
-                                             <div className="gallery-icon">
-                                                  <a href="/">
-                                                       <span className="p-img">
-                                                            <img src={link} alt="" />
-                                                       </span>
-                                                       <span className="s-img">
-                                                            <img src={linkhover} alt="" />
-                                                       </span>
-                                                  </a>
-                                                  <a className="image-popup" href={item.Image6.asset.url}>
-                                                       <span className="p-img">
-                                                            <img src={search} alt="" />
-                                                       </span>
-                                                       <span className="s-img">
-                                                            <img src={searchhover} alt="" />
-                                                       </span>
-                                                  </a>
-                                             </div>
-                                        </div>
-                                   </div>
-                              </MDBCol>
-
-                              <MDBCol lg={3} className='mb-4 mb-lg-0'>
-                                   <div className="item-gallery restaurent hotel">
-
-                                        <img
-                                             src={item.Image4.asset.url}
-                                             className='w-100 shadow-1-strong mb-4'
-                                             alt='Waves at Sea'
-                                        />
-                                        <div className="hover-gallery">
-                                             <div className="gallery-icon">
-                                                  <a href="/">
-                                                       <span className="p-img">
-                                                            <img src={link} alt="" />
-                                                       </span>
-                                                       <span className="s-img">
-                                                            <img src={linkhover} alt="" />
-                                                       </span>
-                                                  </a>
-                                                  <a className="image-popup" href={item.Image4.asset.url}>
-                                                       <span className="p-img">
-                                                            <img src={search} alt="" />
-                                                       </span>
-                                                       <span className="s-img">
-                                                            <img src={searchhover} alt="" />
-                                                       </span>
-                                                  </a>
-                                             </div>
-                                        </div>
-                                   </div>
-                              </MDBCol>
-                         </MDBRow>
-
+                  </div>
+                </div>
+                <div className="item-gallery gym">
+                  <img
+                    src={item.Image5.asset.url}
+                    className="w-100 shadow-1-strong mb-4"
+                    alt="Boat on Calm Water"
+                  />
+                  <div className="hover-gallery">
+                    <div className="gallery-icon">
+                      <a href="/">
+                        <span className="p-img">
+                          <img src={link} alt="" />
+                        </span>
+                        <span className="s-img">
+                          <img src={linkhover} alt="" />
+                        </span>
+                      </a>
+                      <a className="image-popup" href={item.Image5.asset.url}>
+                        <span className="p-img">
+                          <img src={search} alt="" />
+                        </span>
+                        <span className="s-img">
+                          <img src={searchhover} alt="" />
+                        </span>
+                      </a>
                     </div>
+                  </div>
+                </div>
+              </MDBCol>
 
-               </div>
-          </section>)
-     )
+              <MDBCol lg={3} className="mb-4 mb-lg-0">
+                <div className="item-gallery spa hotel">
+                  <img
+                    src={item.Image3.asset.url}
+                    className="w-100 shadow-1-strong mb-4"
+                    alt="Mountains in the Clouds"
+                  />
+                  <div className="hover-gallery">
+                    <div className="gallery-icon">
+                      <a href="/">
+                        <span className="p-img">
+                          <img src={link} alt="" />
+                        </span>
+                        <span className="s-img">
+                          <img src={linkhover} alt="" />
+                        </span>
+                      </a>
+                      <a className="image-popup" href={item.Image3.asset.url}>
+                        <span className="p-img">
+                          <img src={search} alt="" />
+                        </span>
+                        <span className="s-img">
+                          <img src={searchhover} alt="" />
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div className="item-gallery spa hotel gym">
+                  <img
+                    src={item.Image6.asset.url}
+                    className="w-100 shadow-1-strong mb-4"
+                    alt="Boat on Calm Water"
+                  />
+                  <div className="hover-gallery">
+                    <div className="gallery-icon">
+                      <a href="/">
+                        <span className="p-img">
+                          <img src={link} alt="" />
+                        </span>
+                        <span className="s-img">
+                          <img src={linkhover} alt="" />
+                        </span>
+                      </a>
+                      <a className="image-popup" href={item.Image6.asset.url}>
+                        <span className="p-img">
+                          <img src={search} alt="" />
+                        </span>
+                        <span className="s-img">
+                          <img src={searchhover} alt="" />
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </MDBCol>
+
+              <MDBCol lg={3} className="mb-4 mb-lg-0">
+                <div className="item-gallery restaurent hotel">
+                  <img
+                    src={item.Image4.asset.url}
+                    className="w-100 shadow-1-strong mb-4"
+                    alt="Waves at Sea"
+                  />
+                  <div className="hover-gallery">
+                    <div className="gallery-icon">
+                      <a href="/">
+                        <span className="p-img">
+                          <img src={link} alt="" />
+                        </span>
+                        <span className="s-img">
+                          <img src={linkhover} alt="" />
+                        </span>
+                      </a>
+                      <a className="image-popup" href={item.Image4.asset.url}>
+                        <span className="p-img">
+                          <img src={search} alt="" />
+                        </span>
+                        <span className="s-img">
+                          <img src={searchhover} alt="" />
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </MDBCol>
+            </MDBRow>
+          </div>
+        </div>
+      </section>
+    ))
+  );
 }
-
-

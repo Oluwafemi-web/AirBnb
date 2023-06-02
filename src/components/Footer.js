@@ -30,7 +30,7 @@ export default function IndexFooter(props) {
               <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-60">
                 <div className="single-footer-widget">
                   <div className="footer-logo">
-                    <a href="index.html">
+                    <a href="#">
                       <img src={props.logo} alt="Oestin" />
                     </a>
                   </div>
