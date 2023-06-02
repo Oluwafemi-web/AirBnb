@@ -1844,6 +1844,6 @@ span.c-text {
 #contact-form button.default-btn::before {
   background: #333333 none repeat scroll 0 0;
 }
-.footer-logo > img {
+.footer-logo img {
   width: 80%;
 }

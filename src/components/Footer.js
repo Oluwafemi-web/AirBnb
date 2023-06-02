@@ -52,21 +52,13 @@ export default function IndexFooter(props) {
                     <span>
                       <FaEnvelope />
                     </span>
-                    <span>
-                      {props.email}
-                      <br />
-                      {props.email}
-                    </span>
+                    <span>{props.email}</span>
                   </div>
                   <div className="c-info">
                     <span>
                       <FaPhoneAlt />
                     </span>
-                    <span>
-                      {props.number}
-                      <br />
-                      {props.number}
-                    </span>
+                    <span>{props.number}</span>
                   </div>
                 </div>
               </div>

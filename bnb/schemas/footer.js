@@ -51,8 +51,8 @@ export default defineType({
       type: 'string',
     }),
     defineField({
-      name: 'pinterest',
-      title: 'pinterest link',
+      name: 'tiktok',
+      title: 'tiktok link',
       type: 'string',
     }),
   ],
