@@ -79,7 +79,7 @@ export default function IndexGallery() {
       .then((data) => setGallery(data))
       .catch(console.error);
   }, []);
-  console.log(galleryData);
+  // console.log(galleryData);
   return (
     <section className="gallery-area pt-90 pt-bm-90">
       <div className="container">
@@ -108,7 +108,13 @@ export default function IndexGallery() {
           <MDBRow>
             {galleryData &&
               galleryData.map((item, index) => (
-                <MDBCol lg={3} md={10} className="mb-4 mb-lg-0" key={index}>
+                <MDBCol
+                  lg={3}
+                  md={10}
+                  className="mb-4 mb-lg-0"
+                  key={index}
+                  style={{ backgroundImage: `url(${item.Image.asset.url})` }}
+                >
                   <div className={`item-gallery ${item.category}`}>
                     <img
                       src={item.Image.asset.url}
