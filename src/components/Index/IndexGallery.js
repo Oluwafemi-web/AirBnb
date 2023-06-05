@@ -65,8 +65,6 @@ export default function IndexGallery() {
     sanityClient
       .fetch(
         `*[_type == "gallery"] {
-               title,
-               description,
                category,
                 Image{
                     asset->{
@@ -81,14 +79,15 @@ export default function IndexGallery() {
       .then((data) => setGallery(data))
       .catch(console.error);
   }, []);
+  console.log(galleryData);
   return (
     <section className="gallery-area pt-90 pt-bm-90">
       <div className="container">
         <div className="row">
           <div className="col-md-8 mx-auto">
             <div className="section-title text-center">
-              {/* <h3>{item.title}</h3>
-                <p>{item.description}</p> */}
+              <h3>GALLERY</h3>
+              {/* <p>{item.description}</p> */}
             </div>
           </div>
         </div>
