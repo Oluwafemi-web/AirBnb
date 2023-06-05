@@ -26,8 +26,11 @@ export default function IndexFooter(props) {
         {/* Footer Widget Start */}
         <div className="footer-widget-area bg-dark">
           <div className="container">
-            <div className="row mb-n60">
-              <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-60">
+            <div
+              className="row mb-n60"
+              style={{ gap: "12%", marginLeft: "6%" }}
+            >
+              <div className="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-12 mb-60">
                 <div className="single-footer-widget">
                   <div className="footer-logo">
                     <a href="#">
@@ -37,7 +40,7 @@ export default function IndexFooter(props) {
                   <p>{props.description}</p>
                 </div>
               </div>
-              <div className="col-xl-3 offset-lg-1 col-lg-4  col-md-6 col-sm-6 col-12 mb-60">
+              <div className="col-xl-3 col-lg-3  col-md-4 col-sm-4 col-12 mb-60">
                 <div className="single-footer-widget">
                   <h3>contact us</h3>
                   <div className="c-info">
@@ -62,7 +65,7 @@ export default function IndexFooter(props) {
                   </div>
                 </div>
               </div>
-              <div className="col-xl-3 offset-lg-1 col-lg-3 col-md-6 col-sm-6 col-12 mb-60">
+              <div className="col-xl-3  col-lg-3 col-md-4 col-sm-4 col-12 mb-60">
                 <div className="single-footer-widget">
                   <div className="social-icons">
                     <Socials
