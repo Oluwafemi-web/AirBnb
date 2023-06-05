@@ -33,6 +33,7 @@ export default function Attrazione() {
         `*[_type == "attrazione"] {
                roomname,
                description,
+               imagedescription,
                slug,
                image{
                     asset->{
@@ -96,13 +97,28 @@ export default function Attrazione() {
                   attrazioneList.map((item, index) => (
                     <div className="room-list" key={index}>
                       <div className="row">
-                        <div className="col-lg-5 col-md-6">
+                        <div className="col-lg-5 col-md-6 single-room large">
                           <Link
                             to={"/attrazione/" + item.slug.current}
                             key={item.slug.current}
                           >
                             <img src={item.image.asset.url} alt="" />
                           </Link>
+                          <div className="room-hover text-center">
+                            <div className="hover-text">
+                              <h3>{item.roomname}</h3>
+                              <p>{item.imagedescription}</p>
+                              {/* <div className="room-btn">
+                                  <Link
+                                    to={"/rooms/" + props.slugs}
+                                    key={props.slugs}
+                                    className="default-btn"
+                                  >
+                                    DETAILS
+                                  </Link>
+                                </div> */}
+                            </div>
+                          </div>
                         </div>
                         <div className="col-lg-7 col-md-6 align-self-center">
                           <div className="room-list-text">

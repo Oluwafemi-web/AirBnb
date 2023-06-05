@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity'
+import {defineField, defineType} from 'sanity'
 
 export default defineType({
   name: 'attrazione',
@@ -42,6 +42,11 @@ export default defineType({
       options: {
         hotspot: true,
       },
+    }),
+    defineField({
+      name: 'imagedescription',
+      title: 'Short Description(for image effect)',
+      type: 'text',
     }),
     defineField({
       name: 'innerdescription',

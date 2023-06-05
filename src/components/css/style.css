@@ -381,7 +381,7 @@ form.search-form {
 }
 
 .single-room.large .hover-text > p {
-  bottom: 44%;
+  bottom: 30%;
 }
 
 .single-room.large .hover-text > .room-btn {
@@ -1230,7 +1230,7 @@ span.image.s-img {
 
 .room-list img {
   position: relative;
-  z-index: 2;
+  z-index: 0;
 }
 
 .room-list .p-amount {
