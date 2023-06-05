@@ -87,8 +87,8 @@ export default function IndexGallery() {
         <div className="row">
           <div className="col-md-8 mx-auto">
             <div className="section-title text-center">
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
+              {/* <h3>{item.title}</h3>
+                <p>{item.description}</p> */}
             </div>
           </div>
         </div>

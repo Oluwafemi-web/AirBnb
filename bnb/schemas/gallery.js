@@ -16,7 +16,7 @@ export default defineType({
       type: 'text',
     }),
     defineField({
-      name: 'Image1',
+      name: 'Image',
       title: 'Image',
       type: 'image',
       options: {
