@@ -1230,7 +1230,7 @@ span.image.s-img {
 
 .room-list img {
   position: relative;
-  z-index: 0;
+  z-index: 2;
 }
 
 .room-list .p-amount {

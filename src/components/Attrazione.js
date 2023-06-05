@@ -103,12 +103,11 @@ export default function Attrazione() {
                             key={item.slug.current}
                           >
                             <img src={item.image.asset.url} alt="" />
-                          </Link>
-                          <div className="room-hover text-center">
-                            <div className="hover-text">
-                              <h3>{item.roomname}</h3>
-                              <p>{item.imagedescription}</p>
-                              {/* <div className="room-btn">
+                            <div className="room-hover text-center">
+                              <div className="hover-text">
+                                <h3>{item.roomname}</h3>
+                                <p>{item.imagedescription}</p>
+                                {/* <div className="room-btn">
                                   <Link
                                     to={"/rooms/" + props.slugs}
                                     key={props.slugs}
@@ -117,13 +116,19 @@ export default function Attrazione() {
                                     DETAILS
                                   </Link>
                                 </div> */}
+                              </div>
                             </div>
-                          </div>
+                          </Link>
                         </div>
                         <div className="col-lg-7 col-md-6 align-self-center">
                           <div className="room-list-text">
                             <h3>
-                              <a href="room-details.html">{item.roomname}</a>
+                              <Link
+                                to={"/attrazione/" + item.slug.current}
+                                key={item.slug.current}
+                              >
+                                {item.roomname}
+                              </Link>
                             </h3>
                             <p>{item.description}</p>
                           </div>
