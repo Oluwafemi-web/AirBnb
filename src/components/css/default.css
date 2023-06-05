@@ -1640,6 +1640,10 @@ textarea:focus {
 
 .item-gallery {
   position: relative;
+  height: 100%;
+}
+.item-gallery img {
+  height: 100%;
 }
 
 .hover-gallery {

@@ -97,7 +97,7 @@ export default function Attrazione() {
                   attrazioneList.map((item, index) => (
                     <div className="room-list" key={index}>
                       <div className="row">
-                        <div className="col-lg-5 col-md-6 single-room large">
+                        <div className="col-lg-5 col-md-6 single-room large pd-none">
                           <Link
                             to={"/attrazione/" + item.slug.current}
                             key={item.slug.current}
@@ -120,7 +120,7 @@ export default function Attrazione() {
                             </div>
                           </Link>
                         </div>
-                        <div className="col-lg-7 col-md-6 align-self-center">
+                        <div className="col-lg-7 col-md-6 align-self-center pd-20">
                           <div className="room-list-text">
                             <h3>
                               <Link

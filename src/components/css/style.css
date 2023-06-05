@@ -1230,7 +1230,7 @@ span.image.s-img {
 
 .room-list img {
   position: relative;
-  z-index: 2;
+  z-index: 0;
 }
 
 .room-list .p-amount {
@@ -1849,4 +1849,15 @@ span.c-text {
 }
 .room-list img {
   width: 100%;
+}
+.pd-none {
+  padding-left: 0;
+  padding-right: 0;
+}
+.pd-20 {
+  padding-left: 20px;
+}
+.nametag {
+  margin: 25px 0;
+  color: #ffffff;
 }

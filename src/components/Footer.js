@@ -74,6 +74,9 @@ export default function IndexFooter(props) {
                       tiktok={item.tiktok}
                     />
                   </div>
+                  <a href="https://i-gerald.com/" className="nametag">
+                    <p className="nametag">Website by iGerald</p>
+                  </a>
                 </div>
               </div>
             </div>
