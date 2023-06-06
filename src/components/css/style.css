@@ -1861,8 +1861,4 @@ span.c-text {
   margin: 25px 0;
   color: #ffffff;
 }
-@media screen and (max-width: 1024px) {
-  .logo {
-    margin-left: 0 !important;
-  }
-}
+
