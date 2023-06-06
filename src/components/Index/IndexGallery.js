@@ -108,13 +108,7 @@ export default function IndexGallery() {
           <MDBRow className="wd-100" style={{ margin: "0px" }}>
             {galleryData &&
               galleryData.map((item, index) => (
-                <MDBCol
-                  lg={3}
-                  md={10}
-                  className="mb-4 mb-lg-0"
-                  key={index}
-                  style={{ backgroundImage: `url(${item.Image.asset.url})` }}
-                >
+                <MDBCol lg={3} md={10} className="mb-4 mb-lg-0" key={index}>
                   <div className={`item-gallery ${item.category}`}>
                     <img
                       src={item.Image.asset.url}
@@ -124,7 +118,7 @@ export default function IndexGallery() {
 
                     <div className="hover-gallery">
                       <div className="gallery-icon">
-                        <a href="/">
+                        <a href="#">
                           <span className="p-img">
                             <img src={link} alt="" />
                           </span>
