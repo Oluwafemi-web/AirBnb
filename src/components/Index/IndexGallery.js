@@ -105,7 +105,7 @@ export default function IndexGallery() {
           className="gallery gallery-masonry"
           style={{ position: "relative" }}
         >
-          <MDBRow>
+          <MDBRow className="wd-100" style={{ margin: "0px" }}>
             {galleryData &&
               galleryData.map((item, index) => (
                 <MDBCol
