@@ -1711,6 +1711,7 @@ span.image.s-img {
   transition: all 1s ease 0s;
   width: 48%;
   z-index: 1;
+  line-height: 19px;
 }
 
 .small .event-text > p {
@@ -1861,4 +1862,3 @@ span.c-text {
   margin: 25px 0;
   color: #ffffff;
 }
-

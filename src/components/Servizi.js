@@ -141,7 +141,7 @@ export default function Servizi() {
           </div>
 
           <div className="container">
-            <div className="row">
+            {/* <div className="row">
               <div className="col-12">
                 <div className="event-menu">
                   <button data-filter="*" className="active">
@@ -155,7 +155,7 @@ export default function Servizi() {
                   <button data-filter=".photography">Photography Party</button>
                 </div>
               </div>
-            </div>
+            </div> */}
             <div className="row event-items">
               {eventData &&
                 eventData.map((event, index) => (
