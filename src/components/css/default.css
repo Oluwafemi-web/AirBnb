@@ -34,7 +34,11 @@ Please do not change anything here! write in a custom.css file if required!
     01. General
 *************************/
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans|Raleway:400,700");
-
+/* @font-face {
+  font-family: "BritishHair";
+  src: url("../fonts/british-shorthair/British\ Shorthair.otf")
+    format("truetype");
+} */
 html,
 body {
   height: 100%;
@@ -47,6 +51,7 @@ body {
   font-weight: 400;
   line-height: normal;
   font-family: "Lato", sans-serif;
+  /* font-family: "BritishHair"; */
 }
 
 .clear {
