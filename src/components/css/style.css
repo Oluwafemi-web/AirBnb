@@ -1713,7 +1713,7 @@ span.image.s-img {
   color: #ffffff;
   position: absolute;
   transition: all 1s ease 0s;
-  width: 48%;
+  width: 75%;
   z-index: 1;
   line-height: 19px;
 }
