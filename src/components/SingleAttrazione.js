@@ -129,7 +129,7 @@ export default function SingleAttrazione() {
                 </div>
               </div>
               <div className="room-details-text">
-                <h3 className="room-details-title">DESCRIZIONE</h3>
+                <h3 className="room-details-title">Descrizione</h3>
                 <p>{singleAttrazione.innerdescription}</p>
               </div>
             </div>
@@ -139,7 +139,7 @@ export default function SingleAttrazione() {
           <div className="container">
             <div className="row">
               <div className="col-12">
-                <h3 className="room-details-title">NELLE VICINANZE</h3>
+                <h3 className="room-details-title">Nelle Vicinanze</h3>
               </div>
             </div>
           </div>
