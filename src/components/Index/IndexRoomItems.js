@@ -18,10 +18,6 @@ export default function IndexRoomItems(props) {
             </Link>
           </div>
         </div>
-        {/* <div className="p-amount">
-                         <span>{props.price}</span>
-                         <span className="count">Per Night</span>
-                    </div> */}
       </div>
     </div>
   );

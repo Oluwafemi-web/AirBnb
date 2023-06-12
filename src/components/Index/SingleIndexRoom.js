@@ -19,7 +19,7 @@ export default function SingleAttrazione() {
     sanityClient
       .fetch(
         `*[slug.current == "${slug}"]{
-               roomname,
+               title,
                subtitle,
                ptext,
                ctext,
@@ -51,7 +51,7 @@ export default function SingleAttrazione() {
         `*[_type == "indexroom"] {
           title,
           description,
-          slug
+          slug,
           mainImage{
                asset->{
                     _id,
@@ -79,7 +79,7 @@ export default function SingleAttrazione() {
           <div className="row">
             <div className="col-12">
               <div className="breadcrumb-text text-center">
-                <h2>{singleAttrazione.roomname}</h2>
+                <h2>{singleAttrazione.title}</h2>
                 <p>{singleAttrazione.subtitle}</p>
                 <div className="breadcrumb-bar">
                   <ul className="breadcrumb">
@@ -155,7 +155,7 @@ export default function SingleAttrazione() {
                   url={room.mainImage.asset.url}
                   alt={room.mainImage.alt}
                   description={room.description}
-                  slug={room.slug}
+                  slug={room.slug.current}
                 />
               ))}
           </div>

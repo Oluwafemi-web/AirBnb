@@ -12,10 +12,4 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-  /* font-family: "BritishHair"; */
-}
-@font-face {
-  font-family: "BritishHair";
-  src: url("./components/fonts/british-shorthair/British\ Shorthair.otf")
-    format("truetype");
 }

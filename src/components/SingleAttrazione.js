@@ -51,6 +51,7 @@ export default function SingleAttrazione() {
         `*[_type == "indexroom"] {
           title,
           description,
+          slug,
           mainImage{
                asset->{
                     _id,
@@ -150,6 +151,7 @@ export default function SingleAttrazione() {
                   title={room.title}
                   url={room.mainImage.asset.url}
                   alt={room.mainImage.alt}
+                  slug={room.slug.current}
                   description={room.description}
                 />
               ))}

@@ -34,11 +34,15 @@ Please do not change anything here! write in a custom.css file if required!
     01. General
 *************************/
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans|Raleway:400,700");
-/* @font-face {
+@font-face {
   font-family: "BritishHair";
-  src: url("../fonts/british-shorthair/British\ Shorthair.otf")
+  src: url("../fonts/british_shorthair/British\ Shorthair.otf")
     format("truetype");
-} */
+}
+@font-face {
+  font-family: "CompassLT";
+  src: url("../fonts/Compass/Compass.ttf") format("truetype");
+}
 html,
 body {
   height: 100%;
@@ -50,8 +54,18 @@ body {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  font-family: "Lato", sans-serif;
-  /* font-family: "BritishHair"; */
+  font-family: "CpmpassLT";
+}
+.slider-area p {
+  color: #444;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  /* font-family: "Lato", sans-serif; */
+  font-family: "BritishHair";
+  font-weight: bolder; /* Increase the thickness of the text */
+  text-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
 }
 
 .clear {
@@ -85,7 +99,7 @@ h5,
 h6 {
   color: #444;
   margin: 0;
-  font-family: "Raleway", sans-serif;
+  font-family: "CompassLT", sans-serif;
   font-weight: 700;
 }
 
@@ -221,7 +235,9 @@ ul {
 .default-btn {
   background: #b5876d none repeat scroll 0 0;
   color: #ffffff;
-  font-family: "Raleway", sans-serif;
+  /* font-family: "Raleway", sans-serif; */
+  font-family: "CompassLT", sans-serif;
+
   font-size: 14px;
   font-weight: 700;
   position: relative;
@@ -1529,12 +1545,15 @@ textarea:focus {
 
 .breadcrumb-bar li {
   color: #b5876d;
-  font-family: "raleway";
+  font-family: "BritishHair";
   font-size: 18px;
   line-height: 14px;
   margin: 0 18px;
   position: relative;
   text-transform: capitalize;
+}
+.breadcrumb-text h2 {
+  font-family: "BritishHair";
 }
 
 .breadcrumb-bar .breadcrumb > li:first-child::before,
