@@ -57,7 +57,7 @@ NOTE: This is Footer style file. All footer related style included in this file.
   font-size: 18px;
   line-height: 14px;
   margin-bottom: 45px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 
 .footer-list li {

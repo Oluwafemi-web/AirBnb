@@ -31,6 +31,10 @@
 
 -----------------------------------------------------------------------------------*/
 /* Global css */
+@font-face {
+  font-family: "CompassLT";
+  src: url("../fonts/Compass/Compass.ttf") format("truetype");
+}
 a {
   text-decoration: none !important;
 }
@@ -577,7 +581,7 @@ span.image.s-img {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
   border: 0 none;
   color: #444444;
-  font-family: "raleway";
+  font-family: "CompassLT";
   font-size: 18px;
   line-height: 17px;
   padding: 0 21px;
@@ -1762,7 +1766,7 @@ h4.contact-title {
   font-size: 24px;
   line-height: 18px;
   margin-bottom: 30px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 
 .contact-text > p {

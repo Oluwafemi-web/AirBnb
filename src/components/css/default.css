@@ -63,8 +63,8 @@ body {
   font-weight: 400;
   line-height: normal;
   /* font-family: "Lato", sans-serif; */
-  font-family: "BritishHair";
-  font-weight: bolder; /* Increase the thickness of the text */
+  font-family: "CompassLT";
+  font-weight: bold; /* Increase the thickness of the text */
   text-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
 }
 
@@ -99,7 +99,7 @@ h5,
 h6 {
   color: #444;
   margin: 0;
-  font-family: "CompassLT", sans-serif;
+  font-family: "BritishHair", sans-serif;
   font-weight: 700;
 }
 
@@ -1467,7 +1467,7 @@ textarea:focus {
 .section-title h3 {
   line-height: 17px;
   margin-bottom: 23px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 
 /*************************************
@@ -1535,7 +1535,7 @@ textarea:focus {
   font-size: 36px;
   line-height: 26px;
   margin-bottom: 19px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 
 .breadcrumb-text p {
