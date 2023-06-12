@@ -1341,7 +1341,7 @@ span.image.s-img {
   line-height: 18px;
   margin-bottom: 34px;
   position: relative;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 
 .room-details-title::after {
@@ -1691,7 +1691,7 @@ span.image.s-img {
   bottom: 45px;
   color: #ffffff;
   position: absolute;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   transition: all 0.5s ease 0s;
   z-index: 1;
 }

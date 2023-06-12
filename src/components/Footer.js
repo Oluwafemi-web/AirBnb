@@ -42,7 +42,7 @@ export default function IndexFooter(props) {
               </div>
               <div className="col-xl-3 col-lg-3  col-md-4 col-sm-4 col-12 mb-60">
                 <div className="single-footer-widget">
-                  <h3>contact us</h3>
+                  <h3>Contact Us</h3>
                   <div className="c-info">
                     <span>
                       <FaMapMarkerAlt />
