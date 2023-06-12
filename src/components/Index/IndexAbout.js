@@ -46,12 +46,6 @@ export default function IndexAbout() {
                     <h3>{about.title}</h3>
                     <p>{about.description}</p>
                   </div>
-                  <div
-                    className="about-links"
-                    style={{ display: "flex", justifyContent: "center" }}
-                  >
-                    <Socials />
-                  </div>
                 </div>
               </div>
             </div>
