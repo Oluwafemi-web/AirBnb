@@ -128,11 +128,11 @@ export default function SingleRoom() {
                 </div>
               </div>
               <div className="room-details-text">
-                <h3 className="room-details-title">descrizione</h3>
+                <h3 className="room-details-title">Descrizione</h3>
                 <p>{singleRoom.innerdescription}</p>
               </div>
               <div className="room-facilities">
-                <h3 className="room-details-title">room facilities</h3>
+                <h3 className="room-details-title">Room Facilities</h3>
                 <div className="single-facility">
                   <span>
                     <i className="zmdi zmdi-check" />
@@ -195,7 +195,7 @@ export default function SingleRoom() {
           <div className="container">
             <div className="row">
               <div className="col-12">
-                <h3 className="room-details-title">a pochi passi da casa</h3>
+                <h3 className="room-details-title">A Pochi Passi da Casa</h3>
               </div>
             </div>
           </div>
