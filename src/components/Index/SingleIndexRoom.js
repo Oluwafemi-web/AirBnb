@@ -81,14 +81,6 @@ export default function SingleAttrazione() {
               <div className="breadcrumb-text text-center">
                 <h2>{singleAttrazione.title}</h2>
                 <p>{singleAttrazione.subtitle}</p>
-                <div className="breadcrumb-bar">
-                  <ul className="breadcrumb">
-                    <li>
-                      <Link to="/">{singleAttrazione.ptext}</Link>
-                    </li>
-                    <li>{singleAttrazione.ctext}</li>
-                  </ul>
-                </div>
               </div>
             </div>
           </div>
