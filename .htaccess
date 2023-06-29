@@ -1,0 +1,11 @@
+RewriteEngine On
+RewriteBase /
+
+# Handle API requests
+RewriteCond %{REQUEST_URI} ^/api [NC]
+RewriteRule ^(.*)$ /index.php [L]
+
+# Handle other requests by serving index.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.html [L]

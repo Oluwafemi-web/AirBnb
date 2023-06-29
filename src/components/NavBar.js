@@ -67,7 +67,7 @@ export default function NavBar() {
           header.map((item, index) => (
             <div className="row" key={index}>
               <div className="col-xl-5 col-lg-4 col-sm-4 col-12">
-                <div className="logo" style={{ marginLeft: "-15%" }}>
+                <div className="logo" style={{ marginLeft: "-29%" }}>
                   <a href="/">
                     <img src={item.logo.asset.url} alt="Oestin" />
                   </a>
