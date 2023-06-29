@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Socials from "../Socials";
 import sanityClient from "../../client";
+import { PortableText } from "@portabletext/react";
 export default function IndexAbout() {
   const [aboutData, setAbout] = useState(null);
 
@@ -44,7 +44,7 @@ export default function IndexAbout() {
                 <div className="about-text">
                   <div className="section-title">
                     <h3>{about.title}</h3>
-                    <p>{about.description}</p>
+                    <PortableText value={about.description} />
                   </div>
                 </div>
               </div>
