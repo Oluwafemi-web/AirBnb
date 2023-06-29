@@ -15,7 +15,7 @@ export default function Servizi() {
 
     // Get all the filter buttons
     const galleryFilter = document.querySelector(".event-menu");
-    console.log(galleryFilter);
+    // console.log(galleryFilter);
     const filterButtons = galleryFilter.querySelectorAll("button");
 
     // Get all the gallery items

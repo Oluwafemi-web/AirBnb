@@ -26,16 +26,6 @@ export default defineType({
       },
     }),
     defineField({
-      name: 'ptext',
-      title: 'Previous page navigation',
-      type: 'string',
-    }),
-    defineField({
-      name: 'ctext',
-      title: 'Current page navigation',
-      type: 'string',
-    }),
-    defineField({
       name: 'image',
       title: 'Image',
       type: 'image',

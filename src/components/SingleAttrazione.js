@@ -15,34 +15,6 @@ export default function SingleAttrazione() {
   const [singleAttrazione, setSingleAttrazione] = useState(null);
   const [roomData, setRoom] = useState(null);
 
-  useEffect(() => {
-    sanityClient
-      .fetch(
-        `*[slug.current == "${slug}"]{
-               roomname,
-               subtitle,
-               ptext,
-               ctext,
-               innerdescription,
-               slug,
-               image{
-                    asset->{
-                         _id,
-                         url
-                    }
-               },
-               bannerimage{
-                    asset->{
-                         _id,
-                         url
-                    }
-               }
-          }`
-      )
-      .then((data) => setSingleAttrazione(data[0]))
-      .catch(console.error);
-  }, [slug]);
-
   //room query
 
   useEffect(() => {
@@ -65,7 +37,30 @@ export default function SingleAttrazione() {
       .then((data) => setRoom(data))
       .catch(console.error);
   }, []);
-
+  useEffect(() => {
+    sanityClient
+      .fetch(
+        `*[slug.current == "${slug}"]{
+               roomname,
+               innerdescription,
+               slug,
+               image{
+                    asset->{
+                         _id,
+                         url
+                    }
+               },
+               bannerimage{
+                    asset->{
+                         _id,
+                         url
+                    }
+               }
+          }`
+      )
+      .then((data) => setSingleAttrazione(data[0]))
+      .catch(console.error);
+  }, [slug]);
   if (!singleAttrazione) return <div>Loading...</div>;
   return (
     <>
@@ -80,14 +75,14 @@ export default function SingleAttrazione() {
             <div className="col-12">
               <div className="breadcrumb-text text-center">
                 <h2>{singleAttrazione.roomname}</h2>
-                <p>{singleAttrazione.subtitle}</p>
+                {/* <p>{singleAttrazione.subtitle}</p> */}
                 <div className="breadcrumb-bar">
-                  <ul className="breadcrumb">
+                  {/* <ul className="breadcrumb">
                     <li>
                       <Link to="/">{singleAttrazione.ptext}</Link>
                     </li>
                     <li>{singleAttrazione.ctext}</li>
-                  </ul>
+                  </ul> */}
                 </div>
               </div>
             </div>
