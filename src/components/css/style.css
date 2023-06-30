@@ -116,7 +116,9 @@ form.search-form {
 .about-text {
   padding-top: 90px;
 }
-
+.about-area {
+  margin-top: 30px;
+}
 .about-text .section-title {
   padding: 0;
 }

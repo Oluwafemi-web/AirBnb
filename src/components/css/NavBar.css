@@ -289,13 +289,15 @@ NOTE: This is Header style file. All Header related style included in this file.
 .mobile-menu {
   position: relative;
 }
-@media screen and (max-width: 1024px) {
-  .logo {
-    margin-left: 0 !important;
-  }
+@media screen and (max-width: 768px) {
   .header-contact > span,
   .header-contact > span.theme-text,
   .header-links > a {
     color: #000 !important;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .logo {
+    margin-left: 0 !important;
   }
 }
