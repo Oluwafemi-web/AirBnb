@@ -20,10 +20,12 @@ export default defineType({
     defineField({
       name: 'mainImage',
       title: 'Main image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
+      // type: 'image',
+      // options: {
+      //   hotspot: true,
+      // },
+      type: 'file',
+      accept: 'image/*, video/*', // Specify accepted file types
     }),
   ],
 
