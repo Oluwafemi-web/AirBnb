@@ -32,7 +32,12 @@ export default function IndexAbout() {
               <div className="col-lg-7">
                 <div className="video-wrapper mt-90">
                   <div className="video-overlay">
-                    <img src={about.mainImage.asset.url} alt="" />
+                    {/* <img src={about.mainImage.asset.url} alt="" /> */}
+                    <video
+                      style={{ width: "100%" }}
+                      autoPlay
+                      src={about.mainImage.asset.url}
+                    ></video>
                   </div>
                   <a
                     className="video-popup"
