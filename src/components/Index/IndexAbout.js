@@ -6,11 +6,11 @@ export default function IndexAbout() {
   const [aboutData, setAbout] = useState(null);
   const videoRef = useRef(null);
 
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.play();
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (videoRef.current) {
+  //     videoRef.current.play();
+  //   }
+  // }, [aboutData]);
 
   useEffect(() => {
     sanityClient
@@ -42,7 +42,10 @@ export default function IndexAbout() {
                   <div className="video-overlay">
                     {/* <img src={about.mainImage.asset.url} alt="" /> */}
                     <video
+                      id="myVideo"
                       ref={videoRef}
+                      autoPlay={true}
+                      muted={true}
                       style={{ width: "100%" }}
                       loop={true}
                       src={about.mainImage.asset.url}
