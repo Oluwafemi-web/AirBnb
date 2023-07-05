@@ -1868,3 +1868,6 @@ span.c-text {
   margin: 25px 0;
   color: #ffffff;
 }
+#iubenda-cs-banner.iubenda-cs-top {
+  align-items: flex-end !important;
+}

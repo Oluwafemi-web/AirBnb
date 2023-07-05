@@ -1,8 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+
 import sanityClient from "../../client";
 import { PortableText } from "@portabletext/react";
 export default function IndexAbout() {
   const [aboutData, setAbout] = useState(null);
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play();
+    }
+  }, []);
 
   useEffect(() => {
     sanityClient
@@ -34,15 +42,16 @@ export default function IndexAbout() {
                   <div className="video-overlay">
                     {/* <img src={about.mainImage.asset.url} alt="" /> */}
                     <video
+                      ref={videoRef}
                       style={{ width: "100%" }}
-                      autoPlay
+                      loop={true}
                       src={about.mainImage.asset.url}
                     ></video>
                   </div>
-                  <a
+                  {/* <a
                     className="video-popup"
                     href="https://www.youtube.com/watch?v=rXcp6s0VjZk"
-                  ></a>
+                  ></a> */}
                 </div>
               </div>
               <div className="col-lg-5" style={{ textAlign: "center" }}>

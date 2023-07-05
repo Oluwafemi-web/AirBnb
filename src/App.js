@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import sanityClient from "./client";
 import "./App.css";
@@ -18,6 +18,16 @@ import "./components/css/style.css";
 import "./components/css/slider.css";
 import "./components/css/responsive.css";
 
+function ScrollToTop() {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
+  return null;
+}
+
 function App() {
   const [footer, updateFooter] = useState(null);
 
@@ -25,25 +35,25 @@ function App() {
     sanityClient
       .fetch(
         `*[_type == "footer"] {
-      about,
-      address,
-      email,
-      number,
-         logo{
-          asset->{
-            _id,
-            url
-          }
-         },
-     
-
-    }`
+          about,
+          address,
+          email,
+          number,
+          logo{
+            asset->{
+              _id,
+              url
+            }
+          },
+        }`
       )
       .then((data) => updateFooter(data))
       .catch(console.error);
   }, []);
+
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <NavBar />
       <Routes>
         <Route element={<Home />} path="/" exact={true} />
@@ -55,7 +65,6 @@ function App() {
         <Route element={<SingleRoom />} path="/rooms/:slug" />
         <Route element={<Attrazione />} path="/attrazione" />
       </Routes>
-      {/* <IndexNews /> */}
       {footer &&
         footer.map((item, index) => (
           <Footer
@@ -67,7 +76,6 @@ function App() {
             address={item.address}
           />
         ))}
-      {/* <Footer /> */}
     </BrowserRouter>
   );
 }
