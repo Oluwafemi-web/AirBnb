@@ -4,9 +4,100 @@ import { useState, useEffect } from "react";
 import sanityClient from "../client";
 import Socials from "./Socials";
 import { Link } from "react-router-dom";
+import useInput from "../hooks/use-input";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
+const MySwal = withReactContent(Swal);
+
+const isNotEmpty = (value) => value.trim !== "";
+const isEmail = (value) => {
+  return value.trim().length > 5 && value.includes("@");
+};
 export default function Contact() {
   const [contactDetails, setDetails] = useState(null);
+  const {
+    value: nameValue,
+    isValid: nameIsValid,
+    hasError: nameError,
+    valueChangeHandler: nameChangeHandler,
+    inputBlurHandler: nameBlurHandler,
+    reset: resetname,
+  } = useInput(isNotEmpty);
+  const {
+    value: messageValue,
+    isValid: messageIsValid,
+    hasError: messageError,
+    valueChangeHandler: messageChangeHandler,
+    inputBlurHandler: messageBlurHandler,
+    reset: resetmessage,
+  } = useInput(isNotEmpty);
+  const {
+    value: emailValue,
+    isValid: emailIsValid,
+    hasError: emailError,
+    valueChangeHandler: emailChangeHandler,
+    inputBlurHandler: emailBlurHandler,
+    reset: resetemail,
+  } = useInput(isEmail);
+
+  let formIsValid = false;
+  if (nameIsValid && messageIsValid && emailIsValid) {
+    formIsValid = true;
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (nameIsValid && messageIsValid && emailIsValid) {
+      const formData = new FormData();
+      formData.append("name", nameValue);
+      formData.append("email", emailValue);
+      formData.append("message", messageValue);
+
+      // Send form data to the server
+      try {
+        const response = await fetch("contact.php", {
+          method: "POST",
+          body: formData,
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          if (data.status === "success") {
+            MySwal.fire({
+              icon: "success",
+              title: "Success",
+              text: data.message,
+              timer: 1500,
+            });
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: data.message,
+            });
+          }
+        } else {
+          // Show error message to the user
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Form submission failed",
+          });
+        }
+      } catch (error) {
+        console.error("Form submission failed", error);
+      }
+      resetemail();
+      resetname();
+      resetmessage();
+    } else {
+      return;
+    }
+    // Perform form validation if needed
+
+    // Send form data to the server
+  };
   useEffect(() => {
     sanityClient
       .fetch(
@@ -111,16 +202,26 @@ export default function Contact() {
               </div>
               <div className="col-md-8">
                 <h4 className="contact-title">Send Your Message</h4>
-                <form id="contact-form" action="mail.php" method="post">
+                <form id="contact-form" method="post" onSubmit={handleSubmit}>
                   <div className="row">
                     <div className="col-md-6">
-                      <input type="text" name="name" placeholder="Enter Name" />
+                      <input
+                        value={nameValue}
+                        type="text"
+                        name="name"
+                        placeholder="Enter Name"
+                        onChange={nameChangeHandler}
+                        onBlur={nameBlurHandler}
+                      />
                     </div>
                     <div className="col-md-6">
                       <input
                         type="email"
                         name="email"
                         placeholder="Enter Email"
+                        onChange={emailChangeHandler}
+                        value={emailValue}
+                        onBlur={emailBlurHandler}
                       />
                     </div>
                     <div className="col-md-12">
@@ -129,7 +230,9 @@ export default function Contact() {
                         cols={30}
                         rows={10}
                         placeholder="Message here"
-                        defaultValue={""}
+                        value={messageValue}
+                        onChange={messageChangeHandler}
+                        onBlur={messageBlurHandler}
                       />
                       <button type="submit" className="default-btn">
                         SUBMIT
