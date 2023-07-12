@@ -1871,3 +1871,14 @@ span.c-text {
 #iubenda-cs-banner.iubenda-cs-top {
   align-items: flex-end !important;
 }
+.error-text {
+  color: #b40e0e;
+}
+button:disabled,
+button:disabled:hover,
+button:disabled:active {
+  background-color: #ccc;
+  color: #292929;
+  border-color: #ccc;
+  cursor: not-allowed;
+}

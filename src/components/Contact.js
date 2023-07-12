@@ -10,7 +10,7 @@ import withReactContent from "sweetalert2-react-content";
 
 const MySwal = withReactContent(Swal);
 
-const isNotEmpty = (value) => value.trim !== "";
+const isNotEmpty = (value) => value.trim() !== "";
 const isEmail = (value) => {
   return value.trim().length > 5 && value.includes("@");
 };
@@ -205,36 +205,49 @@ export default function Contact() {
                 <form id="contact-form" method="post" onSubmit={handleSubmit}>
                   <div className="row">
                     <div className="col-md-6">
+                      <label htmlFor="Name">Name</label>
                       <input
                         value={nameValue}
                         type="text"
                         name="name"
-                        placeholder="Enter Name"
                         onChange={nameChangeHandler}
                         onBlur={nameBlurHandler}
                       />
+                      {nameError && (
+                        <p className="error-text">Name cannot be empty</p>
+                      )}
                     </div>
                     <div className="col-md-6">
+                      <label htmlFor="email">Email</label>
                       <input
                         type="email"
                         name="email"
-                        placeholder="Enter Email"
                         onChange={emailChangeHandler}
                         value={emailValue}
                         onBlur={emailBlurHandler}
                       />
+                      {emailError && (
+                        <p className="error-text">Enter a valid email!</p>
+                      )}
                     </div>
                     <div className="col-md-12">
+                      <label htmlFor="message">Message</label>
                       <textarea
                         name="message"
                         cols={30}
                         rows={10}
-                        placeholder="Message here"
                         value={messageValue}
                         onChange={messageChangeHandler}
                         onBlur={messageBlurHandler}
                       />
-                      <button type="submit" className="default-btn">
+                      {messageError && (
+                        <p className="error-text">Message cannot be empty</p>
+                      )}
+                      <button
+                        type="submit"
+                        className="default-btn"
+                        disabled={!formIsValid}
+                      >
                         SUBMIT
                       </button>
                     </div>
