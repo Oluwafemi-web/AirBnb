@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import sanityClient from "../../client";
 import IndexRoomItems from "./IndexRoomItems";
+import LanguageContext from "../context/language-context";
 export default function IndexRoom() {
   const [roomData, setRoom] = useState(null);
   const [roomText, setText] = useState(null);
+  const ctx = useContext(LanguageContext);
   useEffect(() => {
     sanityClient
       .fetch(
@@ -19,9 +21,10 @@ export default function IndexRoom() {
   useEffect(() => {
     sanityClient
       .fetch(
-        `*[_type == "indexroom"] {
+        `*[_type == "indexroom" && language == $language] {
                title,
                description,
+               language,
                slug,
                mainImage{
                     asset->{
@@ -29,13 +32,29 @@ export default function IndexRoom() {
                          url
                     },
                     alt
+               },
+               _translations[] {
+                value->{
+                  title,
+                  description,
+                  language,
+                  slug,
+                  mainImage{
+                    asset->{
+                      _id,
+                      url
+                    },
+                    alt
+                  }
+                }
+             }
 
-               }
-          }`
+          }`,
+        { language: ctx.languageData }
       )
       .then((data) => setRoom(data))
       .catch(console.error);
-  }, []);
+  }, [ctx.languageData]);
   return (
     <section className="room-area pt-90">
       <div className="container">

@@ -17,7 +17,6 @@ export default defineType({
       name: 'contact',
       title: 'Contact',
       type: 'string',
-      // to: { type: 'author' },
     }),
     defineField({
       name: 'facebook',
@@ -34,11 +33,6 @@ export default defineType({
       title: 'Tiktok link',
       type: 'string',
     }),
-    // defineField({
-    //      name: 'pinterest',
-    //      title: 'Pinterest link',
-    //      type: 'string',
-    // })
   ],
 
   preview: {

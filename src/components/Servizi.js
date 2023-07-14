@@ -1,65 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import LanguageContext from "./context/language-context";
 import sanityClient from "../client";
 import EventItems from "./EventItems";
 import { Link } from "react-router-dom";
 export default function Servizi() {
-  async function filterGalleryOnLoad() {
-    // Wait for DOM to load completely
-    await new Promise((resolve) => {
-      if (document.readyState === "loading") {
-        document.addEventListener("load", resolve);
-      } else {
-        resolve();
-      }
-    });
-
-    // Get all the filter buttons
-    const galleryFilter = document.querySelector(".event-menu");
-    // console.log(galleryFilter);
-    const filterButtons = galleryFilter.querySelectorAll("button");
-
-    // Get all the gallery items
-    const galleryItems = document.querySelectorAll(".single-event");
-
-    // Add click event listener to each filter button
-    filterButtons.forEach(function (button) {
-      button.addEventListener("click", function () {
-        // Remove "active" class from all buttons
-        filterButtons.forEach(function (btn) {
-          btn.classList.remove("active");
-        });
-
-        // Add "active" class to clicked button
-        this.classList.add("active");
-
-        // Get the filter value from the button
-        const filterValue = this.getAttribute("data-filter");
-
-        // Loop through all gallery items
-        galleryItems.forEach(function (item) {
-          // Check if the item has the same class as the filter value or if the filter value is "*"
-          if (item.classList.contains(filterValue) || filterValue === "*") {
-            // Show the item
-            // item.parentElement.style.position = "relative";
-            item.style.display = "block";
-          } else {
-            // Hide the item
-            // item.parentElement.style.position = "absolute";
-            item.style.display = "none";
-          }
-        });
-      });
-    });
-  }
-
-  // Call the async function to run the code when the DOM is completely loaded
-  filterGalleryOnLoad();
   const [eventData, setEvent] = useState(null);
   const [eventText, setText] = useState(null);
+  const ctx = useContext(LanguageContext);
   useEffect(() => {
     sanityClient
       .fetch(
-        `*[_type == "eventdescription"] {
+        `*[_type == "eventdescription" && language == $language] {
                heading,
                ptext,
                ctext,
@@ -73,12 +24,30 @@ export default function Servizi() {
                     },
                     alt
 
-               }
-          }`
+               },
+               _translations[] {
+                value->{
+                  heading,
+               ptext,
+               ctext,
+               subheading,
+               title,
+               description,
+                  mainImage{
+                    asset->{
+                      _id,
+                      url
+                    },
+                    alt
+                  }
+                }
+             }
+          }`,
+        { language: ctx.languageData }
       )
       .then((data) => setText(data))
       .catch(console.error);
-  }, []);
+  }, [ctx.languageData]);
 
   useEffect(() => {
     sanityClient

@@ -6,6 +6,12 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'language',
+      type: 'string',
+      readOnly: true,
+      hidden: true,
+    }),
+    defineField({
       name: 'heading',
       title: 'Heading',
       type: 'string',
@@ -23,7 +29,7 @@ export default defineType({
     defineField({
       name: 'subheading',
       title: 'Sub-Heading',
-      type: 'string',
+      type: 'text',
     }),
     defineField({
       name: 'mainImage',

@@ -1,17 +1,12 @@
 import NavLinks from "./NavLinks";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaTiktok,
-  FaPinterestP,
-} from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaTiktok } from "react-icons/fa";
 import "./css/NavBar.css";
 import "./css/meanmenu.css";
 import sanityClient from "../client";
 
-export default function NavBar() {
+export default function NavBar(props) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [clicked, setClicked] = useState(false);
   const [header, updateHeader] = useState(null);
@@ -66,14 +61,14 @@ export default function NavBar() {
         {header &&
           header.map((item, index) => (
             <div className="row" key={index}>
-              <div className="col-xl-5 col-lg-4 col-sm-4 col-12">
+              <div className="col-xl-4 col-lg-3 col-sm-3 col-12">
                 <div className="logo" style={{ marginLeft: "-29%" }}>
                   <a href="/">
                     <img src={item.logo.asset.url} alt="Oestin" />
                   </a>
                 </div>
               </div>
-              <div className="col-xl-7 col-lg-8 col-sm-8 col-12">
+              <div className="col-xl-6 col-lg-7 col-sm-7 col-12">
                 <div className="header-top fix">
                   <div className="header-contact">
                     <span className="text-theme">Contact:</span>
@@ -91,18 +86,31 @@ export default function NavBar() {
                     </a>
                   </div>
                 </div>
-                {/* Mainmenu Start */}
                 <div className="main-menu d-none d-lg-block">
                   <nav>
                     <NavLinks />
                   </nav>
                 </div>
-                {/* Mainmenu End */}
+              </div>
+              <div className="col-xl-2 col-lg-2 col-sm-2 col-12">
+                <div className="main-menu language-list d-none d-lg-block">
+                  <ul>
+                    <li>
+                      <NavLink to="#" onClick={props.itClicked}>
+                        IT
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink to="#" onClick={props.enClicked}>
+                        EN
+                      </NavLink>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           ))}
       </div>
-      {/* Mobile Menu Area start */}
       <div className="mobile-menu-area">
         <div className="container mean-container">
           <div className="mean-bar">
@@ -141,6 +149,16 @@ export default function NavBar() {
                 <li>
                   <NavLink to="/contact">CONTACT</NavLink>
                 </li>
+                <li>
+                  <NavLink to="#" onClick={props.itClicked}>
+                    IT
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="#" onClick={props.enClicked}>
+                    EN
+                  </NavLink>
+                </li>
               </ul>
             </nav>
           </div>
@@ -167,6 +185,16 @@ export default function NavBar() {
                     <li>
                       <NavLink to="/contact">CONTACT</NavLink>
                     </li>
+                    <li>
+                      <NavLink to="#" onClick={props.itClicked}>
+                        IT
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink to="#" onClick={props.enClicked}>
+                        EN
+                      </NavLink>
+                    </li>
                   </ul>
                 </nav>
               </div>
@@ -174,8 +202,6 @@ export default function NavBar() {
           </div>
         </div>
       </div>
-
-      {/* Mobile Menu Area end */}
     </header>
   );
 }

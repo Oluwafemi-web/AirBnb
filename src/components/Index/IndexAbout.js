@@ -1,36 +1,45 @@
-import React, { useState, useEffect, useRef } from "react";
-
+import React, { useState, useEffect, useContext } from "react";
+import LanguageContext from "../context/language-context";
 import sanityClient from "../../client";
 import { PortableText } from "@portabletext/react";
 export default function IndexAbout() {
   const [aboutData, setAbout] = useState(null);
-  const videoRef = useRef(null);
-
-  // useEffect(() => {
-  //   if (videoRef.current) {
-  //     videoRef.current.play();
-  //   }
-  // }, [aboutData]);
+  const ctx = useContext(LanguageContext);
 
   useEffect(() => {
     sanityClient
       .fetch(
-        `*[_type == "indexabout"] {
+        `*[_type == "indexabout" && language == $language] {
                title,
                description,
+               language,
                mainImage{
                     asset->{
                          _id,
                          url
                     },
                     alt
-
-               }
-          }`
+               },
+               _translations[] {
+                value->{
+                  title,
+                  description,
+                  language,
+                  mainImage{
+                    asset->{
+                      _id,
+                      url
+                    },
+                    alt
+                  }
+                }
+             }
+          }`,
+        { language: ctx.languageData }
       )
       .then((data) => setAbout(data))
       .catch(console.error);
-  }, []);
+  }, [ctx.languageData]);
   return (
     <section className="about-area">
       <div className="container">
@@ -40,10 +49,8 @@ export default function IndexAbout() {
               <div className="col-lg-7">
                 <div className="video-wrapper mt-90">
                   <div className="video-overlay">
-                    {/* <img src={about.mainImage.asset.url} alt="" /> */}
                     <video
                       id="myVideo"
-                      ref={videoRef}
                       autoPlay={true}
                       muted={true}
                       style={{ width: "100%" }}
@@ -51,10 +58,6 @@ export default function IndexAbout() {
                       src={about.mainImage.asset.url}
                     ></video>
                   </div>
-                  {/* <a
-                    className="video-popup"
-                    href="https://www.youtube.com/watch?v=rXcp6s0VjZk"
-                  ></a> */}
                 </div>
               </div>
               <div className="col-lg-5" style={{ textAlign: "center" }}>

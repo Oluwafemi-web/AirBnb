@@ -1,18 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import sanityClient from "../client";
+import LanguageContext from "./context/language-context";
 import { Link } from "react-router-dom";
 export default function Attrazione() {
   const [attrazioneList, setAttrazioneList] = useState(null);
   const [attrazioneText, setText] = useState(null);
+  const ctx = useContext(LanguageContext);
   useEffect(() => {
     sanityClient
       .fetch(
-        `*[_type == "attrazionedescription"] {
+        `*[_type == "attrazionedescription" && language == $language] {
                heading,
                subheading,
                title,
                ptext,
                ctext,
+               language,
                description,
                mainImage{
                     asset->{
@@ -21,33 +24,69 @@ export default function Attrazione() {
                     },
                     alt
 
-               }
-          }`
+               },
+               _translations[] {
+                value->{
+                  heading,
+               subheading,
+               title,
+               ptext,
+               ctext,
+               language,
+               description,
+                  image{
+                    asset->{
+                      _id,
+                      url
+                    },
+                    alt
+                  }
+                }
+             }
+          }`,
+        { language: ctx.languageData }
       )
       .then((data) => setText(data))
       .catch(console.error);
-  }, []);
+  }, [ctx.languageData]);
   useEffect(() => {
     sanityClient
       .fetch(
-        `*[_type == "attrazione"] {
-               roomname,
-               description,
-               imagedescription,
-               slug,
-               image{
-                    asset->{
-                         _id,
-                         url
-                    },
-                    alt
-
-               }
-          }`
+        `*[_type == "attrazione" && language == $language] {
+         roomname,
+         description,
+         imagedescription,
+         slug,
+         language,
+         image{
+              asset->{
+                   _id,
+                   url
+              },
+              alt
+         },
+         _translations[] {
+            value->{
+              roomname,
+              description,
+              imagedescription,
+              slug,
+              language,
+              image{
+                asset->{
+                  _id,
+                  url
+                },
+                alt
+              }
+            }
+         }
+      }`,
+        { language: ctx.languageData }
       )
       .then((data) => setAttrazioneList(data))
       .catch(console.error);
-  }, []);
+  }, [ctx.languageData]);
 
   return (
     attrazioneText &&

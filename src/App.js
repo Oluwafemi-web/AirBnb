@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import sanityClient from "./client";
 import "./App.css";
 import Contact from "./components/Contact";
@@ -12,6 +12,7 @@ import SingleIndexRoom from "./components/Index/SingleIndexRoom";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import SingleRoom from "./components/SingleRoom";
+import LanguageContext from "./components/context/language-context";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./components/css/default.css";
 import "./components/css/style.css";
@@ -29,7 +30,14 @@ function ScrollToTop() {
 }
 
 function App() {
+  const languageCtx = useContext(LanguageContext);
   const [footer, updateFooter] = useState(null);
+  function enClicked() {
+    languageCtx.changeLanguage("en");
+  }
+  function itClicked() {
+    languageCtx.changeLanguage("it");
+  }
 
   useEffect(() => {
     sanityClient
@@ -54,7 +62,7 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <NavBar />
+      <NavBar enClicked={enClicked} itClicked={itClicked} />
       <Routes>
         <Route element={<Home />} path="/" exact={true} />
         <Route element={<Servizi />} path="/servizi" />

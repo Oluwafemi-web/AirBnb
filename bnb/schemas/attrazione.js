@@ -2,20 +2,25 @@ import {defineField, defineType} from 'sanity'
 
 export default defineType({
   name: 'attrazione',
-  title: 'Attrazione',
   type: 'document',
+  title: 'Attrazione',
   fields: [
     defineField({
-      name: 'roomname',
-      title: 'Room Name',
+      name: 'language',
       type: 'string',
+      readOnly: true,
+      hidden: true,
     }),
     defineField({
       name: 'description',
       title: 'Description',
       type: 'text',
     }),
-
+    defineField({
+      name: 'roomname',
+      title: 'Room Name',
+      type: 'string',
+    }),
     defineField({
       name: 'slug',
       title: 'Slug',

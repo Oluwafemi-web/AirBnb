@@ -48,7 +48,7 @@
 
   .single-room:hover .hover-text > h3,
   .single-room.large:hover .hover-text > h3 {
-    top: 35%;
+    top: 30%;
   }
 
   .hover-text .room-btn,
