@@ -94,18 +94,20 @@ export default function NavBar(props) {
               </div>
               <div className="col-xl-2 col-lg-2 col-sm-2 col-12">
                 <div className="main-menu language-list d-none d-lg-block">
-                  <ul>
-                    <li>
-                      <NavLink to="#" onClick={props.itClicked}>
-                        IT
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink to="#" onClick={props.enClicked}>
-                        EN
-                      </NavLink>
-                    </li>
-                  </ul>
+                  <nav>
+                    <ul>
+                      <li>
+                        <NavLink to="#" onClick={props.itClicked}>
+                          IT
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink to="#" onClick={props.enClicked}>
+                          EN
+                        </NavLink>
+                      </li>
+                    </ul>
+                  </nav>
                 </div>
               </div>
             </div>
