@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
+import LanguageContext from "./context/language-context";
 import { useParams } from "react-router-dom";
 import sanityClient from "../client";
 import IndexRoomItems from "./Index/IndexRoomItems";
@@ -14,6 +14,7 @@ export default function SingleRoom() {
   const { slug } = useParams();
   const [singleRoom, setSingleRoom] = useState(null);
   const [roomData, setRoom] = useState(null);
+  const ctx = useContext(LanguageContext);
 
   useEffect(() => {
     sanityClient
@@ -46,31 +47,80 @@ export default function SingleRoom() {
                          _id,
                          url
                     }
-               }
-          }`
+               },
+               _translations[] {
+                value->{
+                  title,
+                  description,
+                  rm1,
+                  rm2,
+                  rm3,
+                  rm4,
+                  rm5,
+                  rm6,
+                  rm7,
+                  rm8,
+                  rm9,
+                  rm10,
+                  rm11,
+                  rm12,
+                  innerdescription,
+                  slug,
+                  mainImage{
+                       asset->{
+                            _id,
+                            url
+                       }
+                  },
+                  bannerimage{
+                       asset->{
+                            _id,
+                            url
+                       }
+                  }
+                }
+             }
+          }`,
+        { language: ctx.languageData }
       )
       .then((data) => setSingleRoom(data[0]))
       .catch(console.error);
-  }, [slug]);
+  }, [slug, ctx.languageData]);
 
   //room query
 
   useEffect(() => {
     sanityClient
       .fetch(
-        `*[_type == "indexroom"] {
+        `*[_type == "indexroom" && language == $language] {
           title,
           description,
           slug,
+          language,
           mainImage{
                asset->{
                     _id,
                     url
                },
                alt
-
-          }
-     }`
+          },
+          _translations[] {
+            value->{
+              title,
+          description,
+          slug,
+              language,
+              mainImage{
+                asset->{
+                  _id,
+                  url
+                },
+                alt
+              }
+            }
+         }
+     }`,
+        { language: ctx.languageData }
       )
       .then((data) => setRoom(data))
       .catch(console.error);

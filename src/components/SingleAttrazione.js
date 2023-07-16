@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
+import LanguageContext from "./context/language-context";
 import { useParams } from "react-router-dom";
 import sanityClient from "../client";
 import IndexRoomItems from "./Index/IndexRoomItems";
@@ -14,36 +14,53 @@ export default function SingleAttrazione() {
   const { slug } = useParams();
   const [singleAttrazione, setSingleAttrazione] = useState(null);
   const [roomData, setRoom] = useState(null);
-
+  const ctx = useContext(LanguageContext);
   //room query
 
   useEffect(() => {
     sanityClient
       .fetch(
-        `*[_type == "indexroom"] {
+        `*[_type == "indexroom" && language == $language] {
           title,
           description,
           slug,
+          language,
           mainImage{
                asset->{
                     _id,
                     url
                },
                alt
-
-          }
-     }`
+          },
+          _translations[] {
+            value->{
+              title,
+          description,
+          slug,
+              language,
+              mainImage{
+                asset->{
+                  _id,
+                  url
+                },
+                alt
+              }
+            }
+         }
+     }`,
+        { language: ctx.languageData }
       )
       .then((data) => setRoom(data))
       .catch(console.error);
-  }, []);
+  }, [ctx.languageData]);
   useEffect(() => {
     sanityClient
       .fetch(
-        `*[slug.current == "${slug}"]{
+        `*[slug.current == "${slug}" && language == $language]{
                roomname,
                innerdescription,
                slug,
+               language,
                image{
                     asset->{
                          _id,
@@ -55,12 +72,33 @@ export default function SingleAttrazione() {
                          _id,
                          url
                     }
-               }
-          }`
+               },
+               _translations[] {
+                value->{
+                  roomname,
+                  innerdescription,
+                  slug,
+                  language,
+                  image{
+                       asset->{
+                            _id,
+                            url
+                       }
+                  },
+                  bannerimage{
+                       asset->{
+                            _id,
+                            url
+                       }
+                  
+                }
+             }
+          }`,
+        { language: ctx.languageData }
       )
       .then((data) => setSingleAttrazione(data[0]))
       .catch(console.error);
-  }, [slug]);
+  }, [slug, ctx.languageData]);
   if (!singleAttrazione) return <div>Loading...</div>;
   return (
     <>
@@ -75,15 +113,7 @@ export default function SingleAttrazione() {
             <div className="col-12">
               <div className="breadcrumb-text text-center">
                 <h2>{singleAttrazione.roomname}</h2>
-                {/* <p>{singleAttrazione.subtitle}</p> */}
-                <div className="breadcrumb-bar">
-                  {/* <ul className="breadcrumb">
-                    <li>
-                      <Link to="/">{singleAttrazione.ptext}</Link>
-                    </li>
-                    <li>{singleAttrazione.ctext}</li>
-                  </ul> */}
-                </div>
+                <div className="breadcrumb-bar"></div>
               </div>
             </div>
           </div>
