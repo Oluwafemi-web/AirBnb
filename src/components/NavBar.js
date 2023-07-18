@@ -71,7 +71,7 @@ export default function NavBar(props) {
               <div className="col-xl-6 col-lg-7 col-sm-7 col-12">
                 <div className="header-top fix">
                   <div className="header-contact">
-                    <span className="text-theme">Contact:</span>
+                    <span className="text-theme">Whatsapp:</span>
                     <span>{item.contact}</span>
                   </div>
                   <div className="header-links">
@@ -149,7 +149,7 @@ export default function NavBar(props) {
                   <NavLink to="/attrazione">ATTRAZIONI</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/contact">CONTACT</NavLink>
+                  <NavLink to="/contact">CONTACTS</NavLink>
                 </li>
                 <li>
                   <NavLink to="#" onClick={props.itClicked}>
@@ -185,7 +185,7 @@ export default function NavBar(props) {
                       <NavLink to="/attrazione">ATTRAZIONI</NavLink>
                     </li>
                     <li>
-                      <NavLink to="/contact">CONTACT</NavLink>
+                      <NavLink to="/contact">CONTACTS</NavLink>
                     </li>
                     <li>
                       <NavLink to="#" onClick={props.itClicked}>

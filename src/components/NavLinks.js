@@ -18,7 +18,7 @@ export default function NavLinks(props) {
           <NavLink to="/attrazione">ATTRAZIONI</NavLink>
         </li>
         <li>
-          <NavLink to="/contact">CONTACT</NavLink>
+          <NavLink to="/contact">CONTACTS</NavLink>
         </li>
       </ul>
     </>
