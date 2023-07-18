@@ -90,8 +90,8 @@ export default function SingleAttrazione() {
                             _id,
                             url
                        }
-                  
                 }
+              }
              }
           }`,
         { language: ctx.languageData }
