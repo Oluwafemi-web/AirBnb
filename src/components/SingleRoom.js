@@ -1,4 +1,7 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useRef } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import LanguageContext from "./context/language-context";
 import { useParams } from "react-router-dom";
 import sanityClient from "../client";
@@ -11,6 +14,9 @@ function urlFor(source) {
   return builder.image(source);
 }
 export default function SingleRoom() {
+  const nav1 = useRef(null);
+  const nav2 = useRef(null);
+
   const { slug } = useParams();
   const [singleRoom, setSingleRoom] = useState(null);
   const [roomData, setRoom] = useState(null);
@@ -22,6 +28,12 @@ export default function SingleRoom() {
         `*[slug.current == "${slug}"]{
                title,
                description,
+               images[]{
+                asset->{
+                  _id,
+                  url
+                }
+               },
                rm1,
                rm2,
                rm3,
@@ -52,6 +64,12 @@ export default function SingleRoom() {
                 value->{
                   title,
                   description,
+                  images[]{
+                    asset->{
+                      _id,
+                      url
+                    }
+                   },
                   rm1,
                   rm2,
                   rm3,
@@ -127,6 +145,7 @@ export default function SingleRoom() {
   }, []);
 
   if (!singleRoom) return <div>Loading...</div>;
+
   return (
     <>
       <section
@@ -149,7 +168,38 @@ export default function SingleRoom() {
           <div className="row">
             <div className="col-xl-12 col-lg-8 col-12">
               <div className="room-slider-wrapper">
-                <div className="room-slider slick-initialized slick-slider slick-active">
+                <Slider
+                  className="room-slider"
+                  asNavFor={nav2.current}
+                  ref={nav1}
+                  prevArrow={<></>}
+                  nextArrow={<></>}
+                >
+                  {singleRoom.images.map((item) => (
+                    <div className="slider-image" key={item._id}>
+                      <img src={item.asset.url} />
+                    </div>
+                  ))}
+                </Slider>
+                <div className="row nav-row">
+                  <Slider
+                    className="slider-nav"
+                    asNavFor={nav1.current}
+                    ref={nav2}
+                    slidesToShow={4}
+                    swipeToSlide={true}
+                    focusOnSelect={true}
+                  >
+                    {singleRoom.images.map((item) => (
+                      <div className="nav-image" key={item._id}>
+                        <img src={item.asset.url} />
+                      </div>
+                    ))}
+                  </Slider>
+                </div>
+              </div>
+
+              {/* <div className="room-slider slick-initialized slick-slider slick-active">
                   <div aria-live="polite" className="slick-list draggable">
                     <div
                       className="slick-track"
@@ -175,8 +225,7 @@ export default function SingleRoom() {
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                </div> */}
               <div className="room-details-text">
                 <h3 className="room-details-title">Descrizione</h3>
                 <p>{singleRoom.innerdescription}</p>

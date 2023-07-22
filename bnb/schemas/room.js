@@ -17,15 +17,6 @@ export default defineType({
       type: 'string',
     }),
     defineField({
-      name: 'price',
-      title: 'Price',
-      type: 'string',
-      // options: {
-      //      source: 'title',
-      //      maxLength: 96,
-      // },
-    }),
-    defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
@@ -53,6 +44,19 @@ export default defineType({
       title: 'Inner Page Description',
       type: 'text',
     }),
+    {
+      name: 'images',
+      type: 'array',
+      title: 'Inner Images',
+      of: [
+        {
+          type: 'image',
+          options: {
+            hotspot: true, // Enables hotspot selection for cropping images
+          },
+        },
+      ],
+    },
     defineField({
       name: 'bannerimage',
       title: 'Inner page Banner Image',
