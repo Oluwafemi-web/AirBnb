@@ -17,6 +17,7 @@
     "imagesloaded": "^5.0.0",
     "isotope-layout": "^3.0.6",
     "jquery": "^3.6.4",
+    "lightbox.js-react": "^0.6.9",
     "mdb-react-ui-kit": "^6.0.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",

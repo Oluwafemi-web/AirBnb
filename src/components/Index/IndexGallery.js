@@ -2,6 +2,8 @@
 import sanityClient from "../../client";
 import link from "../img/link.webp";
 import linkhover from "../img/link-hover.webp";
+import { SlideshowLightbox } from "lightbox.js-react";
+import "lightbox.js-react/dist/index.css";
 import search from "../img/search.webp";
 import searchhover from "../img/search-hover.webp";
 import { useState, useEffect } from "react";
@@ -79,6 +81,7 @@ export default function IndexGallery() {
       .then((data) => setGallery(data))
       .catch(console.error);
   }, []);
+  if (!galleryData) return;
   // console.log(galleryData);
   return (
     <section className="gallery-area pt-90 pt-bm-90">
@@ -105,7 +108,41 @@ export default function IndexGallery() {
           className="gallery gallery-masonry"
           style={{ position: "relative" }}
         >
-          <MDBRow className="wd-100" style={{ margin: "0px" }}>
+          <SlideshowLightbox className="row wd-100">
+            {galleryData &&
+              galleryData.map((item, index) => (
+                <img
+                  key={index}
+                  src={item.Image.asset.url}
+                  className={`item-gallery ${item.category}  col-md-12 col-lg-3 mb-4 mb-lg-0col-md-12 col-lg-3 mb-4 mb-lg-0  shadow-1-strong mb-4 thumb`}
+                  alt="Boat on Calm Water"
+                />
+                // <div className={`item-gallery ${item.category}`}>
+
+                //   <div className="hover-gallery">
+                //     <div className="gallery-icon">
+                //       <a href="#">
+                //         <span className="p-img">
+                //           <img src={link} alt="" />
+                //         </span>
+                //         <span className="s-img">
+                //           <img src={linkhover} alt="" />
+                //         </span>
+                //       </a>
+                //       <a className="image-popup" href={item.Image.asset.url}>
+                //         <span className="p-img">
+                //           <img src={search} alt="" />
+                //         </span>
+                //         <span className="s-img">
+                //           <img src={searchhover} alt="" />
+                //         </span>
+                //       </a>
+                //     </div>
+                //   </div>
+                // </div>
+              ))}
+          </SlideshowLightbox>
+          {/* <MDBRow className="wd-100" style={{ margin: "0px" }}>
             {galleryData &&
               galleryData.map((item, index) => (
                 <MDBCol lg={3} md={12} className="mb-4 mb-lg-0" key={index}>
@@ -139,7 +176,7 @@ export default function IndexGallery() {
                   </div>
                 </MDBCol>
               ))}
-          </MDBRow>
+          </MDBRow> */}
         </div>
       </div>
     </section>
