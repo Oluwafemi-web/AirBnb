@@ -198,34 +198,6 @@ export default function SingleRoom() {
                   </Slider>
                 </div>
               </div>
-
-              {/* <div className="room-slider slick-initialized slick-slider slick-active">
-                  <div aria-live="polite" className="slick-list draggable">
-                    <div
-                      className="slick-track"
-                      role="listbox"
-                      style={{ opacity: 1 }}
-                    >
-                      <div
-                        className="slider-image slick-slide"
-                        data-slick-index={0}
-                        aria-hidden="true"
-                        tabIndex={-1}
-                        role="option"
-                        aria-describedby="slick-slide00"
-                        style={{
-                          width: "100%",
-                          position: "relative",
-                          left: 0,
-                          top: 0,
-                          transition: "opacity 500ms ease 0s",
-                        }}
-                      >
-                        <img src={singleRoom.mainImage.asset.url} alt="" />
-                      </div>
-                    </div>
-                  </div>
-                </div> */}
               <div className="room-details-text">
                 <h3 className="room-details-title">Descrizione</h3>
                 <p>{singleRoom.innerdescription}</p>
@@ -256,7 +228,7 @@ export default function SingleRoom() {
                     {singleRoom.rm5}
                   </span>
                   <span>
-                    <i className="zmdi zmdi-close" />
+                    <i className="zmdi zmdi-check" />
                     {singleRoom.rm6}
                   </span>
                   <span>
@@ -274,7 +246,7 @@ export default function SingleRoom() {
                     {singleRoom.rm9}
                   </span>
                   <span>
-                    <i className="zmdi zmdi-close" />
+                    <i className="zmdi zmdi-check" />
                     {singleRoom.rm10}
                   </span>
                   <span>
@@ -282,7 +254,7 @@ export default function SingleRoom() {
                     {singleRoom.rm11}
                   </span>
                   <span>
-                    <i className="zmdi zmdi-close" />
+                    <i className="zmdi zmdi-check" />
                     {singleRoom.rm12}
                   </span>
                 </div>
