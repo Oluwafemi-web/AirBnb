@@ -174,9 +174,10 @@ export default function SingleRoom() {
                   ref={nav1}
                   prevArrow={<></>}
                   nextArrow={<></>}
+                  focusOnSelect={true}
                 >
-                  {singleRoom.images.map((item) => (
-                    <div className="slider-image" key={item._id}>
+                  {singleRoom.images.map((item, index) => (
+                    <div className="slider-image" key={index}>
                       <img src={item.asset.url} />
                     </div>
                   ))}
@@ -190,8 +191,8 @@ export default function SingleRoom() {
                     swipeToSlide={true}
                     focusOnSelect={true}
                   >
-                    {singleRoom.images.map((item) => (
-                      <div className="nav-image" key={item._id}>
+                    {singleRoom.images.map((item, index) => (
+                      <div className="nav-image" key={index}>
                         <img src={item.asset.url} />
                       </div>
                     ))}

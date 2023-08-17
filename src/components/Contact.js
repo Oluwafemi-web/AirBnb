@@ -98,6 +98,7 @@ export default function Contact() {
 
     // Send form data to the server
   };
+
   useEffect(() => {
     sanityClient
       .fetch(
