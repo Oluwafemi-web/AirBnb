@@ -17,6 +17,10 @@ export default function SingleRoom() {
   const nav1 = useRef(null);
   const nav2 = useRef(null);
 
+  function changeSlide() {
+    nav1.current.slickGoTo(nav2.current.innerSlider.state.currentSlide);
+  }
+
   const { slug } = useParams();
   const [singleRoom, setSingleRoom] = useState(null);
   const [roomData, setRoom] = useState(null);
@@ -142,7 +146,7 @@ export default function SingleRoom() {
       )
       .then((data) => setRoom(data))
       .catch(console.error);
-  }, []);
+  }, [ctx.languageData]);
 
   if (!singleRoom) return <div>Loading...</div>;
 
@@ -170,10 +174,11 @@ export default function SingleRoom() {
               <div className="room-slider-wrapper">
                 <Slider
                   className="room-slider"
-                  asNavFor={nav2.current}
+                  // asNavFor={nav2.current}
                   ref={nav1}
                   prevArrow={<></>}
                   nextArrow={<></>}
+                  slidesToShow={1}
                   focusOnSelect={true}
                 >
                   {singleRoom.images.map((item, index) => (
@@ -185,11 +190,11 @@ export default function SingleRoom() {
                 <div className="row nav-row">
                   <Slider
                     className="slider-nav"
-                    asNavFor={nav1.current}
+                    // asNavFor={nav1.current}
                     ref={nav2}
                     slidesToShow={4}
                     swipeToSlide={true}
-                    focusOnSelect={true}
+                    afterChange={changeSlide}
                   >
                     {singleRoom.images.map((item, index) => (
                       <div className="nav-image" key={index}>
