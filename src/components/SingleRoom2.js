@@ -1,12 +1,7 @@
 import { useEffect, useState, useContext, useRef } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "swiper/css/pagination";
-import { Navigation, Pagination, Controller, Autoplay } from "swiper/modules";
-import SwiperCore from "swiper";
 import LanguageContext from "./context/language-context";
 import { useParams } from "react-router-dom";
 import sanityClient from "../client";
@@ -18,17 +13,23 @@ const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
   return builder.image(source);
 }
-SwiperCore.use([Navigation, Pagination, Controller, Autoplay]);
 
 export default function SingleRoom() {
-  const [controlledSwiper, setControlledSwiper] = useState(null);
-
   const nav1 = useRef(null);
   const nav2 = useRef(null);
 
+  const settings = {
+    slickTrack: {
+      position: "relative",
+    },
+  };
+
   function changeSlide() {
-    const currentSlideIndex = nav2.current.innerSlider.state.currentSlide;
-    controlledSwiper.slideTo(currentSlideIndex);
+    document
+      .querySelector(".slick-slide.slick-active.slick-current")
+      .scrollIntoViewIfNeeded(false);
+
+    nav1.current.slickGoTo(nav2.current.innerSlider.state.currentSlide);
   }
 
   const { slug } = useParams();
@@ -182,23 +183,7 @@ export default function SingleRoom() {
           <div className="row center">
             <div className="col-xl-10 col-lg-8 col-12">
               <div className="room-slider-wrapper">
-                <Swiper
-                  modules={[Navigation, Pagination, Controller]}
-                  spaceBetween={50}
-                  slidesPerView={1}
-                  ref={nav1}
-                  autoplay={false}
-                  onSwiper={(swiper) => setControlledSwiper(swiper)}
-                  loop
-                  className="room-slider"
-                >
-                  {singleRoom.images.map((item, index) => (
-                    <SwiperSlide key={index} className="slider-image">
-                      <img src={item.asset.url} />
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-                {/* <Slider
+                <Slider
                   className="room-slider"
                   // asNavFor={nav2.current}
                   ref={nav1}
@@ -212,26 +197,8 @@ export default function SingleRoom() {
                       <img src={item.asset.url} />
                     </div>
                   ))}
-                </Slider> */}
+                </Slider>
                 <div className="row nav-row">
-                  {/* <Swiper
-                    modules={[Navigation, Pagination, Controller]}
-                    spaceBetween={100}
-                    autoplay={{
-                      delay: 3000,
-                      disableOnInteraction: false,
-                    }}
-                    slidesPerView={4}
-                    controller={{ control: controlledSwiper }}
-                    loop
-                    className="slider-nav"
-                  >
-                    {singleRoom.images.map((item, index) => (
-                      <SwiperSlide key={index} className="nav-image">
-                        <img src={item.asset.url} />
-                      </SwiperSlide>
-                    ))}
-                  </Swiper> */}
                   <Slider
                     className="slider-nav"
                     // asNavFor={nav1.current}

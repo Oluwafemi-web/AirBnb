@@ -1888,3 +1888,10 @@ button:disabled:active {
 ._wTR3b {
   background-color: rgba(0, 0, 0, 0.5) !important;
 }
+div.slick-initialized.slick-slider {
+  position: relative !important;
+}
+.center {
+  justify-content: center !important;
+  align-items: center !important;
+}
