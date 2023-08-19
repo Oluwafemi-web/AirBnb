@@ -1895,3 +1895,6 @@ div.slick-initialized.slick-slider {
   justify-content: center !important;
   align-items: center !important;
 }
+.slider-image img {
+  width: 100%;
+}

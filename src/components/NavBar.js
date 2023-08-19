@@ -1,5 +1,6 @@
 import NavLinks from "./NavLinks";
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { FaFacebookF, FaInstagram, FaTiktok } from "react-icons/fa";
 import "./css/NavBar.css";
@@ -10,6 +11,8 @@ export default function NavBar(props) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [clicked, setClicked] = useState(false);
   const [header, updateHeader] = useState(null);
+  const location = useLocation();
+  const [navOpen, setNavOpen] = useState(false);
 
   useEffect(() => {
     function handleScroll() {
@@ -26,6 +29,10 @@ export default function NavBar(props) {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    setClicked(false);
+  }, [location]);
 
   const clickHandler = () => {
     setClicked((prev) => !prev);
@@ -117,7 +124,7 @@ export default function NavBar(props) {
         <div className="container mean-container">
           <div className="mean-bar">
             <a
-              href="#nav"
+              href="#"
               className={`meanmenu-reveal ${clicked ? "meanclose" : ""}`}
               style={{
                 right: 0,
@@ -168,37 +175,6 @@ export default function NavBar(props) {
             <div className="col-12">
               <div className="mobile-menu">
                 <div className="mean-push" />
-                <nav id="dropdown" style={{ display: "none" }}>
-                  <ul>
-                    <li>
-                      <NavLink to="/" exact="true">
-                        HOME
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink to="/rooms">ROOMS</NavLink>
-                    </li>
-                    <li>
-                      <NavLink to="/servizi">SERVIZI</NavLink>
-                    </li>
-                    <li>
-                      <NavLink to="/attrazione">ATTRAZIONI</NavLink>
-                    </li>
-                    <li>
-                      <NavLink to="/contact">CONTACTS</NavLink>
-                    </li>
-                    <li>
-                      <NavLink to="#" onClick={props.itClicked}>
-                        IT
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink to="#" onClick={props.enClicked}>
-                        EN
-                      </NavLink>
-                    </li>
-                  </ul>
-                </nav>
               </div>
             </div>
           </div>
