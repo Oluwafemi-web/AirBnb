@@ -32,6 +32,7 @@ export default function Contact() {
     inputBlurHandler: messageBlurHandler,
     reset: resetmessage,
   } = useInput(isNotEmpty);
+
   const {
     value: emailValue,
     isValid: emailIsValid,

@@ -198,40 +198,8 @@ export default function SingleRoom() {
                     </SwiperSlide>
                   ))}
                 </Swiper>
-                {/* <Slider
-                  className="room-slider"
-                  // asNavFor={nav2.current}
-                  ref={nav1}
-                  prevArrow={<></>}
-                  nextArrow={<></>}
-                  slidesToShow={1}
-                  adaptiveHeight={true}
-                >
-                  {singleRoom.images.map((item, index) => (
-                    <div className="slider-image" key={index}>
-                      <img src={item.asset.url} />
-                    </div>
-                  ))}
-                </Slider> */}
+
                 <div className="row nav-row">
-                  {/* <Swiper
-                    modules={[Navigation, Pagination, Controller]}
-                    spaceBetween={100}
-                    autoplay={{
-                      delay: 3000,
-                      disableOnInteraction: false,
-                    }}
-                    slidesPerView={4}
-                    controller={{ control: controlledSwiper }}
-                    loop
-                    className="slider-nav"
-                  >
-                    {singleRoom.images.map((item, index) => (
-                      <SwiperSlide key={index} className="nav-image">
-                        <img src={item.asset.url} />
-                      </SwiperSlide>
-                    ))}
-                  </Swiper> */}
                   <Slider
                     className="slider-nav"
                     // asNavFor={nav1.current}
