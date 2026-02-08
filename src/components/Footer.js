@@ -14,7 +14,7 @@ export default function IndexFooter(props) {
                instagram,
               tiktok,
 
-          }`
+          }`,
       )
       .then((data) => updateSocials(data))
       .catch(console.error);
@@ -74,7 +74,7 @@ export default function IndexFooter(props) {
                       tiktok={item.tiktok}
                     />
                   </div>
-                  <a href="https://i-gerald.com/" className="nametag">
+                  <a href="https://igerald.it" className="nametag">
                     <p className="nametag">Website by iGerald</p>
                   </a>
                 </div>
